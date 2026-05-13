@@ -1,0 +1,199 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Agro FastService{% endblock %}</title>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body class="bg-body text-body">
+
+   <!-- HEADER -->
+    <header class="shadow-lg ">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container d-flex flex-wrap align-items-center justify-content-between">
+
+                <!-- Logo -->
+                <a class="navbar-brand d-flex align-items-center order-1 order-lg-1 me-2" href="{% url 'home' %}">
+                    <img src="{% static 'img/logo_afs_transparent.png' %}" alt="AFS Logo" class="me-2">
+                    <span class="fw-bold text-white">Agro FastService</span>
+                </a>
+
+                    <!-- Botón modo oscuro -->
+                <button id="toggle-theme"
+                        class="btn btn-outline-light rounded-circle shadow-sm order-2 ms-auto me-2 me-lg-0">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
+
+                <!-- Botón toggle para móviles -->
+                <button class="navbar-toggler order-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPF"
+                        aria-controls="navbarPF" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Contenido colapsable -->
+                <div class="collapse navbar-collapse order-4 order-lg-3 w-100 w-lg-auto" id="navbarPF">
+
+                    <!-- Menú principal -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/servicios/' in request.path %}active{% endif %}" href="{% url 'servicios:lista_juegos' %}">Servicios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/noticias/' in request.path %}active{% endif %}" href="#">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/contacto/' in request.path %}active{% endif %}" href="{% url 'contacto' %}">Contacto</a>
+                        </li>
+                    </ul>
+
+                    <!-- Buscador -->
+                    <form class="d-flex mb-2 mb-lg-0 me-lg-3 order-5 order-lg-4" role="search" action="{% url 'buscar_servicios' %}" method="get">
+                        <input class="form-control me-2" type="search" name="q" placeholder="Buscar..." aria-label="Buscar"
+                            value="{{ request.GET.q|default:'' }}">
+                        <button class="btn btn-outline-info" type="submit">Buscar</button>
+                    </form>
+
+                    <!-- Carrito -->
+                    <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5 me-3">
+                        <li class="nav-item position-relative">
+                            <a href="{% url 'carrito:ver_carrito' %}" class="nav-link text-white">
+                            <div class="position-relative d-inline-block">
+                                <i class="fas fa-shopping-cart fa-lg"></i>
+                                {% if carrito_total_items > 0 %}
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger small">
+                                        {{ carrito_total_items }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                             </a>
+                        </li>
+                    </ul>
+
+                    <!-- Usuario / Invitado -->
+                    <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar-sm rounded-circle overflow-hidden me-2"
+                                    style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %};">
+                                    {% if user.is_authenticated and user.profile.avatar %}
+                                        <img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}"
+                                            alt="Avatar" class="rounded-circle"
+                                            style="width:100%; height:100%; object-fit:cover;">
+                                    {% else %}
+                                        <img src="{% static 'img/avatares/default.webp' %}"
+                                            alt="Invitado" class="rounded-circle"
+                                            style="width:100%; height:100%; object-fit:cover;">
+                                    {% endif %}
+                                </div>
+                                <span class="text-white">
+                                    Hola,
+                                    {% if user.is_authenticated %}
+                                        <span class="text-danger">{{ user.username }}</span>
+                                    {% else %}
+                                        <span class="text-warning">Invitado</span>
+                                    {% endif %}
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                {% if user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'perfil' %}">Mi perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'registro' %}">Registrarse</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </header>
+
+{% if messages %}
+  <div id="toast-container"
+       class="toast-container position-fixed bottom-0 end-0 p-3"
+       style="z-index: 2000;">
+    {% for message in messages %}
+      <div
+        class="toast align-items-center border-0 show mb-2
+          {% if message.tags == 'success' %}bg-success{% endif %}
+          {% if message.tags == 'error' %}bg-danger{% endif %}
+          {% if message.tags == 'warning' %}bg-warning{% endif %}
+          {% if message.tags == 'info' %}bg-info{% endif %}
+        "
+        role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex">
+          <div class="toast-body">
+            {{ message }}
+          </div>
+          <button type="button"
+                  class="btn-close me-2 m-auto"
+                  data-bs-dismiss="toast"
+                  aria-label="Close"></button>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+    <!-- CONTENIDO DINÁMICO -->
+    <main class="py-5 bg-body-secondary text-center text-dark d-flex justify-content-center align-items-center">
+        <div class="container">
+            {% block content %}
+            <h2 class="text-body">Tu proveedor de servicios agrícolas de maquinaria de confianza</h2>
+            {% endblock %}
+        </div>
+    </main>
+
+    <!-- FOOTER GLOBAL -->
+    <footer class="bg-dark text-white pt-4 pb-2">
+        <div class="container">
+            <div class="row small">
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-uppercase">Sobre nosotros</h6>
+                    <p class="mb-1">Servicios agrícolas de torillos y maquinaria al alcance de todo agricultor.</p>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-uppercase">Enlaces útiles</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-white-50 text-decoration-none">Inicio</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Noticias</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Comunidad</a></li>
+                        <li><a href="{% url 'contacto' %}" class="text-white-50 text-decoration-none">Contacto</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <h6 class="text-uppercase">Contacto</h6>
+                    <p class="mb-1">contacto@agrofastservice.com</p>
+                    <p class="mb-1">+34 681 300 977</p>
+                    <p class="mb-1">Níjar, Almería</p>
+                </div>
+            </div>
+            <hr class="bg-secondary my-2">
+            <div class="text-center small text-white-50">
+                <small>© {% now "Y" %} Agro FastService. Todos los derechos reservados.</small>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

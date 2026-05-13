@@ -1,0 +1,289 @@
+/* =========================================================
+   RESET Y LAYOUT BASE
+========================================================= */
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* El body ocupa toda la pantalla */
+    background-color: var(--bs-body-bg, #f8f9fa);
+    /* fallback */
+    color: var(--bs-body-color, #212529);
+}
+
+/* =========================================================
+   HEADER FIJO
+========================================================= */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1020;
+    /* encima de todo */
+}
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+.navbar {
+    background-color: #212529;
+    /* bg-dark de Bootstrap */
+}
+
+/* Botón modo oscuro */
+#toggle-theme {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo de la navbar */
+.navbar-brand img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.navbar-brand span {
+    font-size: 1.2rem;
+    text-shadow: 2px 2px 5px #000;
+}
+
+/* =========================================================
+   MAIN
+========================================================= */
+main {
+    flex: 1;
+    /* Ocupa todo el espacio disponible */
+    margin-top: 80px;
+    /* Deja hueco para el header fijo */
+    overflow: visible;
+    /* Scroll normal */
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+    width: 100%;
+    background-color: #212529;
+    /* bg-dark */
+    color: #fff;
+    margin-top: auto;
+    /* Empuja el footer al fondo */
+}
+
+/* Links del footer */
+footer a {
+    color: #ced4da;
+    /* text-white-50 */
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Pequeño espaciado y tipografía en footer */
+footer .small {
+    font-size: 0.8rem;
+}
+
+footer h6 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* =========================================================
+   CATÁLOGO Y TARJETAS
+========================================================= */
+
+/* Efecto hover para crecer la tarjeta */
+.juego-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.juego-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto hover solo para la imagen de detalle */
+.detalle-img {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detalle-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   TABLAS Y ELEMENTOS GENERALES
+========================================================= */
+.table {
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 0.75rem;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(var(--bs-body-color-rgb), 0.02);
+}
+
+/* =========================================================
+   VISTA CARRITO (ESCRITORIO)
+========================================================= */
+@media (min-width: 769px) {
+    .carrito-table-wrap .table {
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .carrito-row {
+        border-top: 1px solid rgba(0, 0, 0, 0.04);
+    }
+}
+
+/* =========================================================
+   VISTA CARRITO (MÓVIL / TABLET)
+========================================================= */
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 0.75rem;
+        background: var(--bs-body-secondary-bg);
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .table tbody tr td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none !important;
+        font-size: 0.92rem;
+        padding: 0.35rem 0;
+    }
+
+    .table tbody tr td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--bs-secondary-color);
+        margin-right: 0.75rem;
+        flex: 0 0 auto;
+    }
+
+    .carrito-thumb {
+        width: 50px !important;
+        height: 50px !important;
+        flex: 0 0 auto;
+    }
+
+    .table tbody tr td .btn {
+        min-width: 38px;
+        padding: 0.35rem 0.55rem;
+    }
+}
+
+/* =========================================================
+   TOASTS (NOTIFICACIONES FLOTANTES) – VISTOSOS
+========================================================= */
+
+/* Tamaño, padding, tipografía y efecto vidrio */
+.toast {
+    opacity: 0.9;
+    /* más visible */
+    backdrop-filter: blur(6px);
+    /* desenfoque más marcado */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    /* sombra más profunda */
+    border-radius: 1rem;
+    /* bordes más redondeados */
+    padding: 1rem 1.5rem;
+    /* más espacio interno */
+    font-size: 1.1rem;
+    /* texto más grande */
+    font-weight: 600;
+    /* más llamativo */
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    animation: slideUp 0.5s ease-out;
+    min-width: 300px;
+    /* ancho mínimo */
+    max-width: 400px;
+    /* ancho máximo */
+}
+
+/* Hover: más opaco y ligeramente agrandado */
+.toast:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+/* Animación suave al aparecer */
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 0.95;
+    }
+}
+
+/* =========================================================
+   TOASTS: COLORES DE TEXTO POR TIPO
+========================================================= */
+
+/* Texto negro para toasts informativos y de advertencia */
+.toast.bg-info,
+.toast.bg-warning,
+.toast.bg-success {
+    color: #000 !important;
+}
+
+/* Botón de cierre visible para todos los tipos */
+.toast .btn-close {
+    filter: invert(0) !important;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+
+/* Colores de fondo más vivos */
+.toast.bg-success {
+    background-color: #32FF62 !important;
+}
+
+.toast.bg-danger {
+    background-color: #dc3545 !important;
+    color: #fff;
+}
+
+.toast.bg-warning {
+    background-color: #ffc107 !important;
+}
+
+.toast.bg-info {
+    background-color: #0062FF !important;
+}

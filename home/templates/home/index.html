@@ -1,16 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
 <!-- index.html -->
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Agro FastService</title>
-</head>
-<body>
-<h1>Bienvenido a Agro FastService</h1>
-<p>Consulta nuestros servicios.</p>
-<footer>
-    <p>© 2026 Agro FastService</p>
-    <a href=" {% url 'contacto' %}">Contacto</a>
-</footer>
-</body>
-</html>
+{% block title %}Agro FastService - Inicio{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-body">Bienvenido a Agro FastService - Servicios Agrícolas</h1>
+    <p class="text-body">Explora nuestros servicios agrícolas.</p>
+
+    <img src="{% static 'img/logo_afs_transparent.png' %}" alt="logo" class="img-fluid my-4">
+
+    <div class="alert alert-primary">Servicios agrícolas personalizados, consúltanos</div>
+    <div class="alert alert-warning">Recuerda tener la información y dirección de la finca a mano</div>
+    <div class="alert alert-danger">Recuerda revisar las fechas de disponibilidad</div>
+</div>
+{% endblock %}
