@@ -46,11 +46,16 @@
 
                     <!-- Menú principal -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        {# Listado de navegación#}
+                        {# Una condicional (if en la etiqueta <a/>) para que Inicio (o cual sea) esté activo solo si estoy en esa ruta#}
+                        {# Si la ruta solicitada por el ususario por el request.path es igual == a '/' (la raíz),#}
+                        {# entonces que deje el contenido entre el if y el endif, que es un active (esa class active#}
+                        {# Luego tenemos la ruta hacia la pag home o donde sea#}
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {% if '/servicios/' in request.path %}active{% endif %}" href="{% url 'servicios:lista_juegos' %}">Servicios</a>
+                            <a class="nav-link {% if '/servicios/' in request.path %}active{% endif %}" href="{% url 'servicios:lista_servicios' %}">Servicios</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if '/noticias/' in request.path %}active{% endif %}" href="#">Noticias</a>
@@ -158,7 +163,7 @@
     <main class="py-5 bg-body-secondary text-center text-dark d-flex justify-content-center align-items-center">
         <div class="container">
             {% block content %}
-            <h2 class="text-body">Tu proveedor de servicios agrícolas de maquinaria de confianza</h2>
+            <h2 class="text-body">Tu proveedor de servicios agrícolas con maquinaria de confianza</h2>
             {% endblock %}
         </div>
     </main>
