@@ -30,12 +30,12 @@
 {#    ul, unordered list, crear la estructura de Bootstrap para la paginación#}
     <ul class="pagination justify-content-center">
 {#        Lógica Django Template para ver si estamos en la primera página, para deshabilitar 'Primera' y 'Anterior'. has_previous del obj tipo page#}
-        {% if lista_juegos.has_previous %}
+        {% if lista_servicios.has_previous %}
         <li class="page-item">
             <a class="page-link" href="?page=1">Primera</a>
         </li>
         <li class="page-item">
-            <a class="page-link" href="?page={{ lista_juegos.previous_page_number }}">Anterior</a>
+            <a class="page-link" href="?page={{ lista_servicios.previous_page_number }}">Anterior</a>
         </li>
         {% else %}
         <li class="page-item disabled"><span class="page-link">Primera</span></li>
@@ -47,24 +47,24 @@
 {#      Si el num está cerca de la pag actual (+-2), muestra el número como enlace clicable#}
 {#      Los demás números no se muestran, para evitar una botonera larga#}
 
-{#      lista_juegos.paginator.page_range lista con todos los num de pag#}
-{#      lista_juegos.number devuelve el num de página actual: URL ...?page=1 -> lista_juegos.number = 1#}
-        {% for num in lista_juegos.paginator.page_range %}
-        {% if lista_juegos.number == num %}
+{#      lista_servicios.paginator.page_range lista con todos los num de pag#}
+{#      lista_servicios.number devuelve el num de página actual: URL ...?page=1 -> lista_servicios.number = 1#}
+        {% for num in lista_servicios.paginator.page_range %}
+        {% if lista_servicios.number == num %}
         <li class="page-item active"><span class="page-link">{{ num }}</span></li>
 {#      Filtros de plantilla |add. En django el operador | aplica un filtro a una variable (ej-> |add:'-3' resta 3 a la variable)#}
-        {% elif num > lista_juegos.number|add:'-3' and num < lista_juegos.number|add:'3' %}
+        {% elif num > lista_servicios.number|add:'-3' and num < lista_servicios.number|add:'3' %}
         <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
         {% endif %}
         {% endfor %}
 
 {#      atributo has_next (si tiene siguiente pag)#}
-        {% if lista_juegos.has_next %}
+        {% if lista_servicios.has_next %}
         <li class="page-item">
-            <a class="page-link" href="?page={{ lista_juegos.next_page_number }}">Siguiente</a>
+            <a class="page-link" href="?page={{ lista_servicios.next_page_number }}">Siguiente</a>
         </li>
         <li class="page-item">
-            <a class="page-link" href="?page={{ lista_juegos.paginator.num_pages }}">Última</a>
+            <a class="page-link" href="?page={{ lista_servicios.paginator.num_pages }}">Última</a>
         </li>
         {% else %}
         <li class="page-item disabled"><span class="page-link">Siguiente</span></li>

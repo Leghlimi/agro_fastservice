@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 from servicios.models import Servicio
 
 ''''
+# Sin paginator->
 def lista_servicios(request):
     servicios = Servicio.objects.all()
     contexto_servicios_servicios = {'lista_servicios': servicios}
@@ -39,15 +40,28 @@ def lista_servicios(request):
     contexto_catalogo_servicios = {'lista_servicios': page_obj}
     return render(request, 'servicios/lista_servicios.html', contexto_catalogo_servicios)
 
-'''
 def detalle_servicio(request, pk):
+    """
+    Muestra el detalle de un servicio concreto.
+
+    Obtiene un objeto Servicio de la BD mediante su clave primaria (pk).
+    Si el servicio no existe, devuelve automáticamente un error 404.
+
+    :param request: La petición HTTP de Django.
+    :param pk: Clave primaria del servicio a mostrar.
+    :return: HttpResponse con el template 'servicios/detalle_servicio.html'
+             renderizado, con el objeto 'servicio' en el contexto.
+    """
     # Obtenemos el servicio concreto o mostramos un 404 si no existe
     servicio = get_object_or_404(Servicio, pk=pk)
-
+    '''
+    Una variable servicio que obtiene el objeto de un servicio concreto
+    pasandole el modelo Servicio y una primary key (pk).
+    '''
     # Creamos el contexto que pasaremos a la plantilla
     contexto = {'servicio': servicio}
 
     # Renderizamos la plantilla de detalle
     return render(request, 'servicios/detalle_servicio.html', contexto)
-'''
+
 
