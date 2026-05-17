@@ -62,7 +62,7 @@ class ItemCarrito(models.Model):
         unique_together = ('carrito', 'servicio')
 
     def __str__(self):
-        return f"{self.servicio.nombre} x {self.cantidad}"
+        return f"{self.servicio.nombre} kgs x {self.cantidad}"
 
     def subtotal(self):
         """

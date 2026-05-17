@@ -6,8 +6,8 @@ from .models import Carrito, ItemCarrito
 
 @login_required
 def agregar_al_carrito(request, servicio_id):
-    servicio = get_object_or_404(Servicio, id=servicio_id)
-    carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
+    servicio = get_object_or_404(Servicio, id=servicio_id) # buscar el servicio con el id recibido por parámetro con servicio_id
+    carrito, _ = Carrito.objects.get_or_create(usuario=request.user) # buscar si el usuario ya tiene un carrito, de lo contrario crearlo.
 
     item, creado = ItemCarrito.objects.get_or_create(carrito=carrito, servicio=servicio)
     if not creado:
