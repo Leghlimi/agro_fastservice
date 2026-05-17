@@ -72,60 +72,61 @@
                         <button class="btn btn-outline-info" type="submit">Buscar</button>
                     </form>
 
-{#                    <!-- Carrito -->#}
-{#                    <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5 me-3">#}
-{#                        <li class="nav-item position-relative">#}
-{#                            <a href="{% url 'carrito:ver_carrito' %}" class="nav-link text-white">#}
-{#                            <div class="position-relative d-inline-block">#}
-{#                                <i class="fas fa-shopping-cart fa-lg"></i>#}
-{#                                {% if carrito_total_items > 0 %}#}
-{#                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger small">#}
-{#                                        {{ carrito_total_items }}#}
-{#                                    </span>#}
-{#                                {% endif %}#}
-{#                            </div>#}
-{#                             </a>#}
-{#                        </li>#}
-{#                    </ul>#}
-{##}
-{#                    <!-- Usuario / Invitado -->#}
-{#                    <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5">#}
-{#                        <li class="nav-item dropdown">#}
-{#                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"#}
-{#                            role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
-{#                                <div class="avatar-sm rounded-circle overflow-hidden me-2"#}
-{#                                    style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %};">#}
-{#                                    {% if user.is_authenticated and user.profile.avatar %}#}
-{#                                        <img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}"#}
-{#                                            alt="Avatar" class="rounded-circle"#}
-{#                                            style="width:100%; height:100%; object-fit:cover;">#}
-{#                                    {% else %}#}
-{#                                        <img src="{% static 'img/avatares/default.webp' %}"#}
-{#                                            alt="Invitado" class="rounded-circle"#}
-{#                                            style="width:100%; height:100%; object-fit:cover;">#}
-{#                                    {% endif %}#}
-{#                                </div>#}
-{#                                <span class="text-white">#}
-{#                                    Hola,#}
-{#                                    {% if user.is_authenticated %}#}
-{#                                        <span class="text-danger">{{ user.username }}</span>#}
-{#                                    {% else %}#}
-{#                                        <span class="text-warning">Invitado</span>#}
-{#                                    {% endif %}#}
-{#                                </span>#}
-{#                            </a>#}
-{#                            <ul class="dropdown-menu dropdown-menu-end">#}
-{#                                {% if user.is_authenticated %}#}
-{#                                    <li><a class="dropdown-item" href="{% url 'perfil' %}">Mi perfil</a></li>#}
-{#                                    <li><hr class="dropdown-divider"></li>#}
-{#                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>#}
-{#                                {% else %}#}
-{#                                    <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>#}
-{#                                    <li><a class="dropdown-item" href="{% url 'registro' %}">Registrarse</a></li>#}
-{#                                {% endif %}#}
-{#                            </ul>#}
-{#                        </li>#}
-{#                    </ul>#}
+                    <!-- Carrito -->
+                    <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5 me-3">
+                        <li class="nav-item position-relative">
+                            <a href="{% url 'carrito:ver_carrito' %}" class="nav-link text-white">
+                            <div class="position-relative d-inline-block">
+                                <i class="fas fa-shopping-cart fa-lg"></i>
+                                {% if carrito_total_items > 0 %}
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger small">
+                                        {{ carrito_total_items }}
+                                    </span>
+                                {% endif %}
+                            </div>
+                             </a>
+                        </li>
+                    </ul>
+
+                    <!-- Usuario / Invitado -->
+                    <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar-sm rounded-circle overflow-hidden me-2"
+                                    style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %};">
+                                    {% if user.is_authenticated and user.profile.avatar %}
+                                        <img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}"
+                                            alt="Avatar" class="rounded-circle"
+                                            style="width:100%; height:100%; object-fit:cover;">
+                                    {% else %}
+                                        <img src="{% static 'img/avatares/default.webp' %}"
+                                            alt="Invitado" class="rounded-circle"
+                                            style="width:100%; height:100%; object-fit:cover;">
+                                    {% endif %}
+                                </div>
+                                <span class="text-white">
+                                    Hola,
+                                    {% if user.is_authenticated %}
+                                        <span class="text-danger">{{ user.username }}</span>
+                                    {% else %}
+                                        <span class="text-warning">Invitado</span>
+                                    {% endif %}
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                {% if user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'perfil' %}">Mi perfil</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'registro' %}">Registrarse</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+                    </ul>
+
 
                 </div>
             </div>
@@ -189,8 +190,8 @@
                 <div class="col-md-4 mb-3">
                     <h6 class="text-uppercase">Contacto</h6>
                     <p class="mb-1">contacto@agrofastservice.com</p>
-                    <p class="mb-1">+34 681 300 977</p>
-                    <p class="mb-1">Níjar, Almería</p>
+                    <p class="mb-1">+34 671 568 549</p>
+                    <p class="mb-1">Pueblo Blanco, Níjar, Almería</p>
                 </div>
             </div>
             <hr class="bg-secondary my-2">
