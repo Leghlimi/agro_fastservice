@@ -26,7 +26,7 @@
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center order-1 order-lg-1 me-2" href="{% url 'home' %}">
                 <img src="{% static 'img/logo_afs_transparent.png' %}" alt="AFS Logo" class="me-2">
-                <span class="fw-bold text-white">Agro FastService</span>
+                <span class="fw-bold text-white">AGRO FASTSERVICE</span>
             </a>
 
             <!-- Botón modo oscuro -->
@@ -172,7 +172,7 @@
 <main class="py-5 bg-body-secondary text-center text-dark d-flex justify-content-center align-items-center">
     <div class="container">
         {% block content %}
-            <h2 class="text-body">Tu proveedor de servicios agrícolas con maquinaria de confianza</h2>
+            <h2 class="text-body">Tu proveedor de servicios agrícolas de confianza</h2>
         {% endblock %}
     </div>
 </main>
@@ -183,16 +183,15 @@
         <div class="row small">
             <div class="col-md-4 mb-3">
                 <h6 class="text-uppercase">Sobre nosotros</h6>
-                <p class="mb-1">Servicios agrícolas de torillos y maquinaria al alcance de todo agricultor.</p>
+                <p class="mb-1">Nacemos de una necesidad real: acercar servicios agrícolas profesionales a cada agricultor de Almería, sin complicaciones.</p>
             </div>
             <div class="col-md-4 mb-3">
                 <h6 class="text-uppercase">Enlaces útiles</h6>
                 <ul class="list-unstyled">
                     <li><a href="{% url 'home' %}" class="text-white-50 text-decoration-none">Inicio</a></li>
                     <li><a href="#" class="text-white-50 text-decoration-none">Noticias</a></li>
-                    <li><a href="#" class="text-white-50 text-decoration-none">Comunidad</a></li>
+                    <li><a href="{% url 'contacto' %}" class="text-white-50 text-decoration-none">Trabaja con nosotros</a></li>
                     <li><a href="{% url 'contacto' %}" class="text-white-50 text-decoration-none">Contacto</a></li>
-                    <li><a href="#" class="text-white-50 text-decoration-none">FAQ</a></li>
                 </ul>
             </div>
             <div class="col-md-4 mb-3">

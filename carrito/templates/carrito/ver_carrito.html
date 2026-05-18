@@ -33,7 +33,7 @@
                     <td data-label="Categoria" class="text-center">{{ item.servicio.categoria }}</td>
                     <td data-label="Precio" class="text-center">{{ item.servicio.precio }} €</td>
                     <td data-label="Kg estimados" class="text-center">{{ item.cantidad }} kg</td>
-                    <td data-label="Subtotal" class="text-center fw-semibold">{{ item.subtotal }} €</td>
+                    <td data-label="Subtotal" class="text-center fw-semibold">{{ item.subtotal|floatformat:0 }} €</td>
                     <td data-label="Acciones" class="text-center">
                         <a href="{% url 'carrito:eliminar' item.servicio.id %}"
                             class="btn btn-sm btn-outline-danger shadow-sm rounded-pill">
@@ -50,7 +50,7 @@
     <div
         class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3 mt-4 p-3 bg-body-secondary rounded-3 shadow-sm main-cart-card">
         <h4 class="fw-bold text-success mb-0">
-            Total: {{ total }} €
+            Total: {{ total|floatformat:0 }} €
         </h4>
 
         <div class="d-flex flex-wrap justify-content-center justify-content-md-end gap-2">

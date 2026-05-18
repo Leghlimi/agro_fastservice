@@ -33,7 +33,7 @@ header {
    NAVBAR
 ========================================================= */
 .navbar {
-    background-color: darkolivegreen !important;
+    background-color: darkgreen !important;
 }
 
 
@@ -47,7 +47,7 @@ header {
 
 /* Logo de la navbar */
 .navbar-brand img {
-    height: 70px;
+    height: 50px;
     margin-right: 10px;
 }
 
@@ -124,6 +124,15 @@ footer h6 {
 .detalle-img:hover {
     transform: scale(1.05);
     box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
+}
+
+/* Input cantidad carrito */
+#input-cantidad {
+    width: 170px !important;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 2px !important;
+    text-align: right;
 }
 
 /* =========================================================

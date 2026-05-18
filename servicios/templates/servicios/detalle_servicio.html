@@ -30,17 +30,13 @@
                 <!-- Botones de acción principales -->
                 <form method="post" action="{% url 'carrito:agregar' servicio.id %}">
                     {% csrf_token %}
-                                            <label class="form-label text-body-secondary small mb-1">Introduzca la cantidad en kg</label>
+                    <label class="form-label text-body-secondary small mb-1">Cantidad estimada</label>
                     <div class="d-flex flex-column flex-sm-row gap-3 mb-5 align-items-center">
-                        <input type="number" name="cantidad" min="1" value="1000"
-                               class="form-control w-auto" placeholder="Kg estimados">
+                        <input type="number" id="input-cantidad" name="cantidad" min="10000"
+                               class="form-control w-auto text-end" placeholder="kg">
                         <button type="submit"
                                 class="btn btn-success btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
                             <i class="fas fa-shopping-cart me-2"></i>Añadir al carrito
-                        </button>
-                        <button type="button"
-                                class="btn btn-outline-danger btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
-                            <i class="fas fa-heart me-2"></i>Agregar a favoritos
                         </button>
                         <a href="{% url 'servicios:lista_servicios' %}"
                            class="btn btn-secondary btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center mt-3 mt-sm-0">
