@@ -4,66 +4,67 @@
 {% block title %}{{ servicio.nombre }}{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <div class="row g-5 align-items-start">
+    <div class="container py-5">
+        <div class="row g-5 align-items-start">
 
-        <!-- Columna izquierda: Imagen del servicio -->
-        <div class="col-12 col-md-4">
-            <div class="card shadow-sm border-0 overflow-hidden">
-                <img src="{% static 'img/portadas/' %}{{ servicio.imagen }}" class="detalle-img rounded-3 img-fluid"
-                    alt="Imagen del servicio {{ servicio.nombre }}">
-            </div>
-        </div>
-
-        <!-- Columna derecha: Información del servicio -->
-        <div class="col-12 col-md-8 text-start">
-
-            <!-- Nombre del servicio -->
-            <h1 class="display-5 fw-bold mb-3 text-body">{{ servicio.nombre }}</h1>
-
-            <!-- Precio destacado -->
-            <div class="mb-4">
-                <h2 class="text-success fw-bold">{{ servicio.precio }} €</h2>
-                <small class="text-body-secondary">Impuestos incluidos</small>
+            <!-- Columna izquierda: Imagen del servicio -->
+            <div class="col-12 col-md-4">
+                <div class="card shadow-sm border-0 overflow-hidden">
+                    <img src="{% static 'img/portadas/' %}{{ servicio.imagen }}" class="detalle-img rounded-3 img-fluid"
+                         alt="Imagen del servicio {{ servicio.nombre }}">
+                </div>
             </div>
 
-            <!-- Categoria -->
-            <p class="text-body mb-4"><strong>Disponible en:</strong> {{ servicio.categoria }}</p>
+            <!-- Columna derecha: Información del servicio -->
+            <div class="col-12 col-md-8 text-start">
 
-            <!-- Botones de acción principales -->
-            <div class="d-flex flex-column flex-sm-row gap-3 mb-5">
-                <a href="{% url 'carrito:agregar' servicio.id %}"
-                    class="btn btn-success btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
-                    <i class="fas fa-shopping-cart me-2"></i>Añadir al carrito
-                </a>
-                <button
-                    class="btn btn-outline-danger btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
-                    <i class="fas fa-heart me-2"></i>Agregar a favoritos
-                </button>
-                <a href="{% url 'servicios:lista_servicios' %}"
-                    class="btn btn-secondary btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center mt-3 mt-sm-0">
-                    <i class="fas fa-arrow-left me-2"></i>Volver al catálogo
-                </a>
+                <!-- Nombre del servicio -->
+                <h1 class="display-5 fw-bold mb-3 text-body">{{ servicio.nombre }}</h1>
+
+                <!-- Precio destacado -->
+                <div class="mb-4">
+                    <h2 class="text-success fw-bold">{{ servicio.precio }} €/kg</h2>
+                    <small class="text-body-secondary">Impuestos incluidos</small>
+                </div>
+
+                <!-- Botones de acción principales -->
+                <form method="post" action="{% url 'carrito:agregar' servicio.id %}">
+                    {% csrf_token %}
+                                            <label class="form-label text-body-secondary small mb-1">Introduzca la cantidad en kg</label>
+                    <div class="d-flex flex-column flex-sm-row gap-3 mb-5 align-items-center">
+                        <input type="number" name="cantidad" min="1" value="1000"
+                               class="form-control w-auto" placeholder="Kg estimados">
+                        <button type="submit"
+                                class="btn btn-success btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
+                            <i class="fas fa-shopping-cart me-2"></i>Añadir al carrito
+                        </button>
+                        <button type="button"
+                                class="btn btn-outline-danger btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
+                            <i class="fas fa-heart me-2"></i>Agregar a favoritos
+                        </button>
+                        <a href="{% url 'servicios:lista_servicios' %}"
+                           class="btn btn-secondary btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center mt-3 mt-sm-0">
+                            <i class="fas fa-arrow-left me-2"></i>Volver al catálogo
+                        </a>
+                    </div>
+                </form>
+                <!-- Detalles del producto -->
+                <div class="mb-5">
+                    <h4 class="fw-semibold mb-3 text-body">Detalles del servicio</h4>
+                    <p class="mb-1 text-body">{{ servicio.categoria }}</p>
+                    {% if servicio.descripcion %}
+                        <p class="text-body text-body-secondary">{{ servicio.descripcion }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Reseñas -->
+                <div>
+                    <h5 class="fw-semibold mb-3 text-body">Reseñas</h5>
+                    <p class="text-body text-body-secondary fst-italic">Sección de reseñas de usuarios</p>
+                </div>
+
             </div>
-
-            <!-- Detalles del producto -->
-            <div class="mb-5">
-                <h5 class="fw-semibold mb-3 text-body">Detalles del servicio</h5>
-                <p class="mb-1 text-body"><strong>Categoria:</strong> {{ servicio.categoria }}</p>
-                {% if servicio.descripcion %}
-                <p class="text-body text-body-secondary">{{ servicio.descripcion }}</p>
-                {% endif %}
-            </div>
-
-            <!-- Reseñas -->
-            <div>
-                <h4 class="fw-semibold mb-3 text-body">Reseñas</h4>
-                <p class="text-body text-body-secondary fst-italic">Sección de reseñas de usuarios pendiente de
-                    implementación.</p>
-            </div>
-
         </div>
     </div>
-</div>
 
 {% endblock %}

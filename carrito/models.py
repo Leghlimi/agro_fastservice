@@ -31,7 +31,7 @@ class Carrito(models.Model):
 
         :return: Entero con la suma de las cantidades de todos los items.
         """
-        return sum(item.cantidad for item in self.items.all())
+        return self.items.count()
 
     def total_precio(self):
         """
@@ -62,7 +62,7 @@ class ItemCarrito(models.Model):
         unique_together = ('carrito', 'servicio')
 
     def __str__(self):
-        return f"{self.servicio.nombre} kgs x {self.cantidad}"
+        return f"{self.servicio.nombre} x {self.cantidad} kg"
 
     def subtotal(self):
         """

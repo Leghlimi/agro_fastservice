@@ -23,15 +23,17 @@ def agregar_al_carrito(request, servicio_id):
     Si ya existe lo reutiliza. Aquí sí se usa el boolean (item:objeto, creado:boolean).
     Esto es para que no se creen dos items distintos del mismo servicio, sino que se incremente la cantidad.
     '''
-    servicio = get_object_or_404(Servicio, id=servicio_id) # buscar el servicio con el id recibido por parámetro con servicio_id
-    carrito, _ = Carrito.objects.get_or_create(usuario=request.user) # buscar si el usuario ya tiene un carrito, de lo contrario crearlo.
+    servicio = get_object_or_404(Servicio, id=servicio_id)
+    cantidad = int(request.POST.get('cantidad', 1))
+    carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
 
     item, creado = ItemCarrito.objects.get_or_create(carrito=carrito, servicio=servicio)
     if not creado:
-        item.cantidad += 1
-        messages.info(request, f"Se ha aumentado la cantidad de {servicio.nombre} en el carrito.")
+        item.cantidad += cantidad
+        messages.info(request, f"Se han añadido {cantidad} kg más de {servicio.nombre} al carrito.")
     else:
-        messages.success(request, f"Producto '{servicio.nombre}' añadido al carrito correctamente.")
+        item.cantidad = cantidad
+        messages.success(request, f"Servicio '{servicio.nombre}' añadido con {cantidad} kg.")
     item.save()
 
     return redirect('servicios:detalle_servicio', pk=servicio_id)
