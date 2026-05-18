@@ -46,11 +46,13 @@
 
                     <!-- Menú principal -->
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        {# Listado de navegación#}
-                        {# Una condicional (if en la etiqueta <a/>) para que Inicio (o cual sea) esté activo solo si estoy en esa ruta#}
-                        {# Si la ruta solicitada por el ususario por el request.path es igual == a '/' (la raíz),#}
-                        {# entonces que deje el contenido entre el if y el endif, que es un active (esa class active#}
-                        {# Luego tenemos la ruta hacia la pag home o donde sea#}
+                        {% comment %}
+                         Listado de navegación
+                         Una condicional (if en la etiqueta <a/>) para que Inicio (o cual sea) esté activo solo si estoy en esa ruta
+                         Si la ruta solicitada por el ususario por el request.path es igual == a '/' (la raíz),
+                         entonces que deje el contenido entre el if y el endif, que es un active (esa class active
+                         Luego tenemos la ruta hacia la pag home o donde sea
+                         {% endcomment %}
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
                         </li>

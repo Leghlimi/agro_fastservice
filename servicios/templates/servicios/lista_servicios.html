@@ -42,13 +42,15 @@
         <li class="page-item disabled"><span class="page-link">Anterior</span></li>
         {% endif %}
 
-{#      Bucle for en la botonera que recorre todas las páginas disponibles#}
-{#      Si el num coincide con la pag actual, muestra el botón active.#}
-{#      Si el num está cerca de la pag actual (+-2), muestra el número como enlace clicable#}
-{#      Los demás números no se muestran, para evitar una botonera larga#}
+      {% comment %}
+      Bucle for en la botonera que recorre todas las páginas disponibles
+      Si el num coincide con la pag actual, muestra el botón active.
+      Si el num está cerca de la pag actual (+-2), muestra el número como enlace clicable
+      Los demás números no se muestran, para evitar una botonera larga
 
-{#      lista_servicios.paginator.page_range lista con todos los num de pag#}
-{#      lista_servicios.number devuelve el num de página actual: URL ...?page=1 -> lista_servicios.number = 1#}
+      lista_servicios.paginator.page_range lista con todos los num de pag
+      lista_servicios.number devuelve el num de página actual: URL ...?page=1 -> lista_servicios.number = 1
+      {% endcomment %}
         {% for num in lista_servicios.paginator.page_range %}
         {% if lista_servicios.number == num %}
         <li class="page-item active"><span class="page-link">{{ num }}</span></li>
