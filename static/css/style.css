@@ -33,9 +33,9 @@ header {
    NAVBAR
 ========================================================= */
 .navbar {
-    background-color: #212529;
-    /* bg-dark de Bootstrap */
+    background-color: darkolivegreen !important;
 }
+
 
 /* Botón modo oscuro */
 #toggle-theme {
@@ -47,7 +47,7 @@ header {
 
 /* Logo de la navbar */
 .navbar-brand img {
-    height: 50px;
+    height: 70px;
     margin-right: 10px;
 }
 
