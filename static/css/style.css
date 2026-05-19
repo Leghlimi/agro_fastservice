@@ -382,3 +382,24 @@ footer h6 {
 .toast.bg-info {
     background-color: #0062FF !important;
 }
+
+/* =========================================================
+   GALERÍA
+========================================================= */
+.galeria-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 0.75rem !important;
+}
+
+.galeria-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15) !important;
+}
+
+.galeria-img {
+    transition: transform 0.4s ease;
+}
+
+.galeria-card:hover .galeria-img {
+    transform: scale(1.05);
+}

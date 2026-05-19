@@ -5,103 +5,116 @@
 
 {% block content %}
 
-<!-- Hero -->
-<div class="py-5 mb-4" style="background: linear-gradient(135deg, #1a3a1a 0%, #2d6a2d 60%, #4a9e4a 100%); border-radius: 0 0 1rem 1rem;">
-    <div class="container text-center text-white py-4">
-        <h1 class="display-4 fw-bold mb-3">Servicios agrícolas a golpe de clic</h1>
-        <p class="lead mb-4 text-white-50">Servicios agrícolas al alcance de todo agricultor</p>
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
-            <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success btn-lg rounded-pill px-4">
-                <i class="fas fa-leaf me-2"></i>Ver servicios
-            </a>
-            <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg rounded-pill px-4">
-                <i class="fas fa-envelope me-2"></i>Contáctanos
-            </a>
-        </div>
-    </div>
-</div>
-
-<!-- Qué hacemos -->
-<div class="container mb-5">
-    <div class="row g-4">
-        <div class="col-12 text-center mb-3">
-            <h2 class="fw-bold text-body">¿Qué hacemos?</h2>
-            <p class="text-body-secondary">La agricultura se está profesionalizando y externalizando. Nosotros lo hacemos fácil.</p>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-                <div class="mb-3">
-                    <i class="fas fa-tractor fa-3x" style="color: #2d6a2d;"></i>
-                </div>
-                <h5 class="fw-bold text-body">Maquinaria especializada</h5>
-                <p class="text-body-secondary">Ofrecemos servicios de extracción de sandías con torillo, maquinaria específica que no siempre está disponible en las empresas familiares.</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-                <div class="mb-3">
-                    <i class="fas fa-handshake fa-3x" style="color: #2d6a2d;"></i>
-                </div>
-                <h5 class="fw-bold text-body">Conexión directa</h5>
-                <p class="text-body-secondary">Conectamos agricultores con profesionales del sector de forma rápida y sencilla, sin intermediarios innecesarios.</p>
-            </div>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm text-center p-4">
-                <div class="mb-3">
-                    <i class="fas fa-calendar-check fa-3x" style="color: #2d6a2d;"></i>
-                </div>
-                <h5 class="fw-bold text-body">Agenda tu cita</h5>
-                <p class="text-body-secondary">Añade los servicios que necesitas al carrito, indica los kg estimados y agenda tu cita en minutos.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Servicios destacados -->
-<div class="py-5" style="background-color: var(--bs-body-secondary-bg);">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-12">
-                <h2 class="fw-bold text-body mb-3">Almería, capital agrícola</h2>
-                <p class="text-body-secondary">Una provincia en constante expansión donde la agricultura es el motor económico. La falta de mano de obra especializada ha impulsado la externalización de servicios agrícolas.</p>
-                <p class="text-body-secondary">Agro FastService nace de una necesidad real, observada de primera mano en el sector, para facilitar el acceso a servicios profesionales de maquinaria agrícola.</p>
-                <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success rounded-pill px-4 mt-2">
-                    <i class="fas fa-arrow-right me-2"></i>Explorar servicios
+    <!-- Hero -->
+    <div class="py-5 mb-4"
+         style="background: linear-gradient(135deg, #1a3a1a 0%, #2d6a2d 60%, #4a9e4a 100%); border-radius: 0 0 1rem 1rem;">
+        <div class="container text-center text-white py-4">
+            <h1 class="display-4 fw-bold mb-3">Servicios agrícolas a golpe de clic</h1>
+            <p class="lead mb-4 text-white-50">Servicios agrícolas al alcance de todo agricultor</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success btn-lg rounded-pill px-4">
+                    <i class="fas fa-leaf me-2"></i>Ver servicios
+                </a>
+                <a href="{% url 'galeria' %}" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                    <i class="fas fa-images me-2"></i>Ver maquinaria
+                </a>
+                <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                    <i class="fas fa-envelope me-2"></i>Contáctanos
                 </a>
             </div>
-            <div class="col-12 text-center mt-3">
-                <img src="{% static 'img/logo_afs_transparent.png' %}" alt="Agro FastService" class="img-fluid" style="max-height: 350px;">
-            </div>
         </div>
     </div>
-</div>
 
-<!-- Avisos -->
-<div class="container my-5">
-    <div class="row g-3">
-        <div class="col-md-4">
-            <div class="alert alert-success border-0 shadow-sm d-flex align-items-center gap-3 mb-0">
-                <i class="fas fa-info-circle fa-lg"></i>
-                <span>Consulta nuestros servicios agrícolas personalizados</span>
+    <!-- Qué hacemos -->
+    <div class="container mb-5">
+        <div class="row g-4">
+            <div class="col-12 text-center mb-3">
+                <h2 class="fw-bold text-body">¿Qué hacemos?</h2>
+                <p class="text-body-secondary">La agricultura se está profesionalizando y externalizando. Nosotros lo
+                    hacemos fácil.</p>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-3 mb-0">
-                <i class="fas fa-map-marker-alt fa-lg"></i>
-                <span>Ten a mano toda la información necesaria</span>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-tractor fa-3x" style="color: #2d6a2d;"></i>
+                    </div>
+                    <h5 class="fw-bold text-body">Maquinaria especializada</h5>
+                    <p class="text-body-secondary">Ofrecemos servicios de extracción de sandías con torillo, maquinaria
+                        específica que no siempre está disponible en las empresas familiares.</p>
+                </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center gap-3 mb-0">
-                <i class="fas fa-calendar-alt fa-lg"></i>
-                <span>Consulta la disponibilidad con nuestro personal</span>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-handshake fa-3x" style="color: #2d6a2d;"></i>
+                    </div>
+                    <h5 class="fw-bold text-body">Conexión directa</h5>
+                    <p class="text-body-secondary">Conectamos agricultores con profesionales del sector de forma rápida
+                        y sencilla, sin intermediarios innecesarios.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="mb-3">
+                        <i class="fas fa-calendar-check fa-3x" style="color: #2d6a2d;"></i>
+                    </div>
+                    <h5 class="fw-bold text-body">Agenda tu cita</h5>
+                    <p class="text-body-secondary">Añade los servicios que necesitas al carrito, indica los kg estimados
+                        y agenda tu cita en minutos.</p>
+                </div>
             </div>
         </div>
     </div>
-</div>
+
+    <!-- Servicios destacados -->
+    <div class="py-5" style="background-color: var(--bs-body-secondary-bg);">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-12">
+                    <h2 class="fw-bold text-body mb-3">Almería, capital agrícola</h2>
+                    <p class="text-body-secondary">Una provincia en constante expansión donde la agricultura es el motor
+                        económico. La falta de mano de obra especializada ha impulsado la externalización de servicios
+                        agrícolas.</p>
+                    <p class="text-body-secondary">Agro FastService nace de una necesidad real, observada de primera
+                        mano en el sector, para facilitar el acceso a servicios profesionales de maquinaria
+                        agrícola.</p>
+                    <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success rounded-pill px-4 mt-2">
+                        <i class="fas fa-arrow-right me-2"></i>Explorar servicios
+                    </a>
+                </div>
+                <div class="col-12 text-center mt-3">
+                    <img src="{% static 'img/logo_afs_transparent.png' %}" alt="Agro FastService" class="img-fluid"
+                         style="max-height: 350px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Avisos -->
+    <div class="container my-5">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <div class="alert alert-success border-0 shadow-sm d-flex align-items-center gap-3 mb-0">
+                    <i class="fas fa-info-circle fa-lg"></i>
+                    <span>Consulta nuestros servicios agrícolas personalizados</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-3 mb-0">
+                    <i class="fas fa-map-marker-alt fa-lg"></i>
+                    <span>Ten a mano toda la información necesaria</span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center gap-3 mb-0">
+                    <i class="fas fa-calendar-alt fa-lg"></i>
+                    <span>Consulta la disponibilidad con nuestro personal</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

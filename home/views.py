@@ -11,3 +11,6 @@ def contacto(request):
 
 # La respuesta son archivos html en una ruta concreta
 # Mostramos una plantilla html a partir de una solicitud
+
+def galeria(request):
+    return render(request, 'home/galeria.html')
