@@ -28,7 +28,7 @@ def lista_servicios(request):
         renderizado, incluyendo el objeto de página como 'lista_servicios'.
     """
     servicios = Servicio.objects.all().order_by('id')  # QuerySet con todos los servicios, mantenemos un orden consistente
-    paginator = Paginator(servicios, 3)  # mostramos 6 servicios por página
+    paginator = Paginator(servicios, 4)  # mostramos x servicios por página
 
     # Obtenemos el número de página desde la URL (?page=2)
     page_number = request.GET.get('page')

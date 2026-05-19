@@ -55,6 +55,14 @@ header {
     background: rgba(255, 255, 255, 0.1) !important;
 }
 
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.navbar-toggler-icon {
+    filter: brightness(1.5);
+}
+
 .navbar-toggler:hover {
     border-color: rgba(255, 255, 255, 0.8) !important;
     background: rgba(255, 255, 255, 0.1) !important;
@@ -123,8 +131,6 @@ header {
     border: 1px solid whitesmoke !important;
     border-radius: 4px;
 }
-
-
 
 /* =========================================================
    MAIN
@@ -204,6 +210,16 @@ footer h6 {
     letter-spacing: 2px !important;
     text-align: right;
 }
+
+@media (max-width: 576px) {
+    .row-cols-1 > .col {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+
+
 
 /* =========================================================
    TABLAS Y ELEMENTOS GENERALES
