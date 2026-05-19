@@ -5,146 +5,155 @@
 
 {% block content %}
 
-<!-- Hero -->
-<div class="py-4 mb-4" style="background: linear-gradient(135deg, #1a3a1a 0%, #214d21 60%, #4a9e4a 100%); border-radius: 0 0 1rem 1rem;">
-    <div class="text-center text-white py-3">
-        <h1 class="fw-bold mb-2"><i class="fas fa-envelope me-2"></i>Contacto</h1>
-        <p class="text-white-50 mb-0">Rellena el formulario y nos pondremos en contacto contigo</p>
-    </div>
-</div>
-
-<div class="container-fluid px-0 px-md-3 py-4">
-    <div class="row justify-content-center">
-        <div class="col-12 px-2 px-md-4">
-
-            <!-- Avisos -->
-            <div class="row g-3 mb-4">
-                <div class="col-md-4">
-                    <div class="alert alert-success border-0 shadow-sm d-flex align-items-center gap-2 mb-0">
-                        <i class="fas fa-clock"></i>
-                        <small>Nos adaptamos a tu horario</small>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-2 mb-0">
-                        <i class="fas fa-hourglass-half"></i>
-                        <small>El tiempo de respuesta puede variar</small>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center gap-2 mb-0">
-                        <i class="fas fa-shield-alt"></i>
-                        <small>No envíes información sensible</small>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Formulario -->
-            <div class="card border-0 shadow-sm p-4">
-                <form method="post">
-                    {% csrf_token %}
-
-                    <div class="row g-3">
-                        <div class="col-12 col-md-6">
-                            <label for="{{ form.nombre.id_for_label }}" class="form-label fw-semibold">Nombre completo <span class="text-danger">*</span></label>
-                            <input type="text" name="{{ form.nombre.html_name }}"
-                                   id="{{ form.nombre.id_for_label }}"
-                                   class="form-control" placeholder="Tu nombre completo"
-                                   value="{{ form.nombre.value|default:'' }}">
-                            {% if form.nombre.errors %}
-                                <div class="invalid-feedback d-block">{{ form.nombre.errors|striptags }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <label for="{{ form.telefono.id_for_label }}" class="form-label fw-semibold">Teléfono <span class="text-danger">*</span></label>
-                            <input type="tel" name="{{ form.telefono.html_name }}"
-                                   id="{{ form.telefono.id_for_label }}"
-                                   class="form-control" placeholder="Ej: +34 600 000 000"
-                                   value="{{ form.telefono.value|default:'' }}">
-                            {% if form.telefono.errors %}
-                                <div class="invalid-feedback d-block">{{ form.telefono.errors|striptags }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <label for="{{ form.email.id_for_label }}" class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
-                            <input type="email" name="{{ form.email.html_name }}"
-                                   id="{{ form.email.id_for_label }}"
-                                   class="form-control" placeholder="tu@email.com"
-                                   value="{{ form.email.value|default:'' }}">
-                            {% if form.email.errors %}
-                                <div class="invalid-feedback d-block">{{ form.email.errors|striptags }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <label for="{{ form.fecha.id_for_label }}" class="form-label fw-semibold">Fecha solicitada <span class="text-danger">*</span></label>
-                            <input type="date" name="{{ form.fecha.html_name }}"
-                                   id="{{ form.fecha.id_for_label }}"
-                                   class="form-control"
-                                   value="{{ form.fecha.value|default:'' }}">
-                            {% if form.fecha.errors %}
-                                <div class="invalid-feedback d-block">{{ form.fecha.errors|striptags }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="col-12">
-                            <label for="{{ form.direccion_finca.id_for_label }}" class="form-label fw-semibold">Dirección de la finca <span class="text-danger">*</span></label>
-                            <input type="text" name="{{ form.direccion_finca.html_name }}"
-                                   id="{{ form.direccion_finca.id_for_label }}"
-                                   class="form-control" placeholder="Dirección completa de la finca"
-                                   value="{{ form.direccion_finca.value|default:'' }}">
-                            {% if form.direccion_finca.errors %}
-                                <div class="invalid-feedback d-block">{{ form.direccion_finca.errors|striptags }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <label for="{{ form.m2_finca.id_for_label }}" class="form-label fw-semibold">m² de la finca</label>
-                            <input type="number" name="{{ form.m2_finca.html_name }}"
-                                   id="{{ form.m2_finca.id_for_label }}"
-                                   class="form-control" placeholder="Ej: 10000"
-                                   value="{{ form.m2_finca.value|default:'' }}">
-                            {% if form.m2_finca.errors %}
-                                <div class="invalid-feedback d-block">{{ form.m2_finca.errors|striptags }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            <label for="{{ form.kg_estimados.id_for_label }}" class="form-label fw-semibold">kg estimados</label>
-                            <input type="number" name="{{ form.kg_estimados.html_name }}"
-                                   id="{{ form.kg_estimados.id_for_label }}"
-                                   class="form-control" placeholder="Ej: 50000"
-                                   value="{{ form.kg_estimados.value|default:'' }}">
-                            {% if form.kg_estimados.errors %}
-                                <div class="invalid-feedback d-block">{{ form.kg_estimados.errors|striptags }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="col-12">
-                            <label for="{{ form.otros_datos.id_for_label }}" class="form-label fw-semibold">Otros datos</label>
-                            <textarea name="{{ form.otros_datos.html_name }}"
-                                      id="{{ form.otros_datos.id_for_label }}"
-                                      class="form-control" rows="3"
-                                      placeholder="Cualquier información adicional que quieras añadir...">{{ form.otros_datos.value|default:'' }}</textarea>
-                            {% if form.otros_datos.errors %}
-                                <div class="invalid-feedback d-block">{{ form.otros_datos.errors|striptags }}</div>
-                            {% endif %}
-                        </div>
-
-                        <div class="col-12 text-end mt-2">
-                            <small class="text-body-secondary me-3"><span class="text-danger">*</span> Campos obligatorios</small>
-                            <button type="submit" class="btn btn-success rounded-pill px-4">
-                                <i class="fas fa-paper-plane me-2"></i>Enviar consulta
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
+    <!-- Hero -->
+    <div class="py-4 mb-4"
+         style="background: linear-gradient(135deg, #1a3a1a 0%, #214d21 60%, #4a9e4a 100%); border-radius: 0 0 1rem 1rem;">
+        <div class="text-center text-white py-3">
+            <h1 class="fw-bold mb-2"><i class="fas fa-envelope me-2"></i>Contacto</h1>
+            <p class="text-white-50 mb-0">Rellena el formulario y nos pondremos en contacto contigo</p>
         </div>
     </div>
-</div>
+
+    <div class="container-fluid px-0 px-md-3 py-4">
+        <div class="row justify-content-center">
+            <div class="col-12 px-1 px-md-3" style="max-width: 700px;">
+                <!-- Avisos -->
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="alert alert-success border-0 shadow-sm d-flex align-items-center gap-2 mb-0">
+                            <i class="fas fa-clock"></i>
+                            <small>Nos adaptamos a tu horario</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-warning border-0 shadow-sm d-flex align-items-center gap-2 mb-0">
+                            <i class="fas fa-hourglass-half"></i>
+                            <small>El tiempo de respuesta puede variar</small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="alert alert-danger border-0 shadow-sm d-flex align-items-center gap-2 mb-0">
+                            <i class="fas fa-shield-alt"></i>
+                            <small>No envíes información sensible</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario -->
+                <div class="card border-0 shadow-sm p-4">
+                    <form method="post">
+                        {% csrf_token %}
+
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label for="{{ form.nombre.id_for_label }}" class="form-label fw-semibold">Nombre
+                                    completo <span class="text-danger">*</span></label>
+                                <input type="text" name="{{ form.nombre.html_name }}"
+                                       id="{{ form.nombre.id_for_label }}"
+                                       class="form-control" placeholder="Tu nombre completo"
+                                       value="{{ form.nombre.value|default:'' }}">
+                                {% if form.nombre.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.nombre.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label for="{{ form.telefono.id_for_label }}" class="form-label fw-semibold">Teléfono
+                                    <span class="text-danger">*</span></label>
+                                <input type="tel" name="{{ form.telefono.html_name }}"
+                                       id="{{ form.telefono.id_for_label }}"
+                                       class="form-control" placeholder="Ej: +34 600 000 000"
+                                       value="{{ form.telefono.value|default:'' }}">
+                                {% if form.telefono.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.telefono.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label for="{{ form.email.id_for_label }}" class="form-label fw-semibold">Email <span
+                                        class="text-danger">*</span></label>
+                                <input type="email" name="{{ form.email.html_name }}"
+                                       id="{{ form.email.id_for_label }}"
+                                       class="form-control" placeholder="tu@email.com"
+                                       value="{{ form.email.value|default:'' }}">
+                                {% if form.email.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.email.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label for="{{ form.fecha.id_for_label }}" class="form-label fw-semibold">Fecha
+                                    solicitada <span class="text-danger">*</span></label>
+                                <input type="date" name="{{ form.fecha.html_name }}"
+                                       id="{{ form.fecha.id_for_label }}"
+                                       class="form-control"
+                                       value="{{ form.fecha.value|default:'' }}">
+                                {% if form.fecha.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.fecha.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12">
+                                <label for="{{ form.direccion_finca.id_for_label }}" class="form-label fw-semibold">Dirección
+                                    de la finca <span class="text-danger">*</span></label>
+                                <input type="text" name="{{ form.direccion_finca.html_name }}"
+                                       id="{{ form.direccion_finca.id_for_label }}"
+                                       class="form-control" placeholder="Dirección completa de la finca"
+                                       value="{{ form.direccion_finca.value|default:'' }}">
+                                {% if form.direccion_finca.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.direccion_finca.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label for="{{ form.m2_finca.id_for_label }}" class="form-label fw-semibold">m² de la
+                                    finca</label>
+                                <input type="number" name="{{ form.m2_finca.html_name }}"
+                                       id="{{ form.m2_finca.id_for_label }}"
+                                       class="form-control" placeholder="Ej: 10000"
+                                       value="{{ form.m2_finca.value|default:'' }}">
+                                {% if form.m2_finca.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.m2_finca.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label for="{{ form.kg_estimados.id_for_label }}" class="form-label fw-semibold">kg
+                                    estimados</label>
+                                <input type="number" name="{{ form.kg_estimados.html_name }}"
+                                       id="{{ form.kg_estimados.id_for_label }}"
+                                       class="form-control" placeholder="Ej: 50000"
+                                       value="{{ form.kg_estimados.value|default:'' }}">
+                                {% if form.kg_estimados.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.kg_estimados.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12">
+                                <label for="{{ form.otros_datos.id_for_label }}" class="form-label fw-semibold">Otros
+                                    datos</label>
+                                <textarea name="{{ form.otros_datos.html_name }}"
+                                          id="{{ form.otros_datos.id_for_label }}"
+                                          class="form-control" rows="3"
+                                          placeholder="Cualquier información adicional que quieras añadir...">{{ form.otros_datos.value|default:'' }}</textarea>
+                                {% if form.otros_datos.errors %}
+                                    <div class="invalid-feedback d-block">{{ form.otros_datos.errors|striptags }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-12 text-end mt-2">
+                                <small class="text-body-secondary me-3"><span class="text-danger">*</span> Campos
+                                    obligatorios</small>
+                                <button type="submit" class="btn btn-success rounded-pill px-4">
+                                    <i class="fas fa-paper-plane me-2"></i>Enviar consulta
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
