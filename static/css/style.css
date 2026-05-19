@@ -32,28 +32,47 @@ header {
 /* =========================================================
    NAVBAR
 ========================================================= */
-.navbar {
-    background-color: darkgreen !important;
+.nav-link-afs {
+    position: relative;
+    padding-bottom: 4px !important;
+    transition: color 0.2s ease;
 }
 
-
-/* Botón modo oscuro */
-#toggle-theme {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+.nav-link-afs::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #4a9e4a;
+    transition: width 0.3s ease;
 }
 
-/* Logo de la navbar */
-.navbar-brand img {
-    height: 50px;
-    margin-right: 10px;
+.nav-link-afs:hover::after,
+.nav-link-afs.active::after {
+    width: 100%;
 }
 
-.navbar-brand span {
-    font-size: 1.2rem;
-    text-shadow: 2px 2px 5px #000;
+.nav-link-afs.active {
+    color: #90EE90 !important;
+}
+
+.bg-navbar-search {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    color: white !important;
+}
+
+.bg-navbar-search::placeholder {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.rounded-pill-start {
+    border-radius: 20px 0 0 20px !important;
+}
+
+.rounded-pill-end {
+    border-radius: 0 20px 20px 0 !important;
 }
 
 /* =========================================================

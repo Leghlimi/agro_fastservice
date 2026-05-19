@@ -18,123 +18,134 @@
 </head>
 <body class="bg-body text-body">
 
-<!-- HEADER -->
-<header class="shadow-lg ">
+<!-- HEADER --><!-- HEADER -->
+<header class="shadow-lg">
     <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container d-flex flex-wrap align-items-center justify-content-between">
+        <div class="container">
 
             <!-- Logo -->
-            <a class="navbar-brand d-flex align-items-center order-1 order-lg-1 me-2" href="{% url 'home' %}">
+            <a class="navbar-brand d-flex align-items-center me-4" href="{% url 'home' %}">
                 <img src="{% static 'img/logo_afs_transparent.png' %}" alt="AFS Logo" class="me-2">
-                <span class="fw-bold text-white">AGRO FASTSERVICE</span>
+                <span class="fw-bold text-white fs-5">AGRO FASTSERVICE</span>
             </a>
 
-            <!-- Botón modo oscuro -->
-            <button id="toggle-theme"
-                    class="btn btn-outline-light rounded-circle shadow-sm order-2 ms-auto me-2 me-lg-0">
-                <i class="fa-solid fa-circle-half-stroke"></i>
-            </button>
-
             <!-- Botón toggle para móviles -->
-            <button class="navbar-toggler order-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPF"
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPF"
                     aria-controls="navbarPF" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <!-- Contenido colapsable -->
-            <div class="collapse navbar-collapse order-4 order-lg-3 w-100 w-lg-auto" id="navbarPF">
+            <div class="collapse navbar-collapse" id="navbarPF">
 
                 <!-- Menú principal -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {% comment %}
-                         Listado de navegación
-                         Una condicional (if en la etiqueta <a/>) para que Inicio (o cual sea) esté activo solo si estoy en esa ruta
-                         Si la ruta solicitada por el ususario por el request.path es igual == a '/' (la raíz),
-                         entonces que deje el contenido entre el if y el endif, que es un active (esa class active
-                         Luego tenemos la ruta hacia la pag home o donde sea
-                         {% endcomment %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == '/' %}active{% endif %}"
-                           href="{% url 'home' %}">Inicio</a>
+                        <a class="nav-link nav-link-afs {% if request.path == '/' %}active{% endif %}"
+                           href="{% url 'home' %}">
+                            <i class="fas fa-home me-1"></i>Inicio
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if '/servicios/' in request.path %}active{% endif %}"
-                           href="{% url 'servicios:lista_servicios' %}">Servicios</a>
+                        <a class="nav-link nav-link-afs {% if '/servicios/' in request.path %}active{% endif %}"
+                           href="{% url 'servicios:lista_servicios' %}">
+                            <i class="fas fa-leaf me-1"></i>Servicios
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if '/noticias/' in request.path %}active{% endif %}" href="#">Noticias</a>
+                        <a class="nav-link nav-link-afs {% if '/noticias/' in request.path %}active{% endif %}" href="#">
+                            <i class="fas fa-newspaper me-1"></i>Noticias
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if '/contacto/' in request.path %}active{% endif %}"
-                           href="{% url 'contacto' %}">Contacto</a>
+                        <a class="nav-link nav-link-afs {% if '/contacto/' in request.path %}active{% endif %}"
+                           href="{% url 'contacto' %}">
+                            <i class="fas fa-envelope me-1"></i>Contacto
+                        </a>
                     </li>
                 </ul>
 
                 <!-- Buscador -->
-                <form class="d-flex mb-2 mb-lg-0 me-lg-3 order-5 order-lg-4" role="search"
+                <form class="d-flex mb-2 mb-lg-0 me-3" role="search"
                       action="{% url 'buscar_servicios' %}" method="get">
-                    <input class="form-control me-2" type="search" name="q" placeholder="Buscar..." aria-label="Buscar"
-                           value="{{ request.GET.q|default:'' }}">
-                    <button class="btn btn-outline-info" type="submit">Buscar</button>
+                    <div class="input-group">
+                        <input class="form-control form-control-sm rounded-pill-start border-0 bg-navbar-search"
+                               type="search" name="q" placeholder="Buscar servicios..."
+                               value="{{ request.GET.q|default:'' }}">
+                        <button class="btn btn-success btn-sm rounded-pill-end px-3" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </form>
 
                 <!-- Carrito -->
-                <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5 me-3">
-                    <li class="nav-item position-relative">
-                        <a href="{% url 'carrito:ver_carrito' %}" class="nav-link text-white">
-                            <div class="position-relative d-inline-block">
-                                <i class="fas fa-shopping-cart fa-lg"></i>
-                                {% if carrito_total_items > 0 %}
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger small">
-                                        {{ carrito_total_items }}
-                                    </span>
-                                {% endif %}
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                <a href="{% url 'carrito:ver_carrito' %}" class="nav-link text-white me-3 position-relative">
+                    <i class="fas fa-shopping-basket fa-lg"></i>
+                    {% if carrito_total_items > 0 %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              style="font-size: 0.6rem;">
+                            {{ carrito_total_items }}
+                        </span>
+                    {% endif %}
+                </a>
+
+                <!-- Botón modo oscuro -->
+                <button id="toggle-theme" class="btn btn-outline-light btn-sm rounded-circle me-3"
+                        style="width:34px; height:34px;">
+                    <i class="fa-solid fa-circle-half-stroke"></i>
+                </button>
 
                 <!-- Usuario / Invitado -->
-                <ul class="navbar-nav mb-2 mb-lg-0 order-6 order-lg-5">
+                <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#"
                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <div class="avatar-sm rounded-circle overflow-hidden me-2"
-                                 style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#FFFFFF{% else %}#eee400{% endif %};">
+                            <div class="rounded-circle overflow-hidden border border-2 border-success"
+                                 style="width:32px; height:32px; background-color: {% if user.is_authenticated %}#fff{% else %}#eee400{% endif %};">
                                 {% if user.is_authenticated and user.profile.avatar %}
                                     <img src="{% static 'img/avatares/'|add:user.profile.avatar|add:'.webp' %}"
-                                         alt="Avatar" class="rounded-circle"
-                                         style="width:100%; height:100%; object-fit:cover;">
+                                         alt="Avatar" style="width:100%; height:100%; object-fit:cover;">
                                 {% else %}
                                     <img src="{% static 'img/avatares/default.webp' %}"
-                                         alt="Invitado" class="rounded-circle"
-                                         style="width:100%; height:100%; object-fit:cover;">
+                                         alt="Invitado" style="width:100%; height:100%; object-fit:cover;">
                                 {% endif %}
                             </div>
-                            <span class="text-white">
-                                    Hola,
+                            <span class="text-white small">
                                 {% if user.is_authenticated %}
-                                    <span class="text-warning">{{ user.username }}</span>
+                                    <span class="text-warning fw-semibold">{{ user.username }}</span>
                                 {% else %}
                                     <span class="text-info">Invitado</span>
                                 {% endif %}
-                                </span>
+                            </span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
                             {% if user.is_authenticated %}
-                                <li><a class="dropdown-item" href="{% url 'perfil' %}">Mi perfil</a></li>
                                 <li>
-                                    <hr class="dropdown-divider">
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'perfil' %}">
+                                        <i class="fas fa-user-circle text-success"></i>Mi perfil
+                                    </a>
                                 </li>
-                                <li><a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="{% url 'logout' %}">
+                                        <i class="fas fa-sign-out-alt"></i>Cerrar sesión
+                                    </a>
+                                </li>
                             {% else %}
-                                <li><a class="dropdown-item" href="{% url 'login' %}">Iniciar sesión</a></li>
-                                <li><a class="dropdown-item" href="{% url 'registro' %}">Registrarse</a></li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'login' %}">
+                                        <i class="fas fa-sign-in-alt text-success"></i>Iniciar sesión
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2" href="{% url 'registro' %}">
+                                        <i class="fas fa-user-plus text-success"></i>Registrarse
+                                    </a>
+                                </li>
                             {% endif %}
                         </ul>
                     </li>
                 </ul>
-
 
             </div>
         </div>
