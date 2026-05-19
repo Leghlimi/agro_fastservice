@@ -403,3 +403,13 @@ footer h6 {
 .galeria-card:hover .galeria-img {
     transform: scale(1.05);
 }
+
+/* =========================================================
+   CONTACTO
+========================================================= */
+@media (max-width: 576px) {
+    .col-md-6 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
