@@ -141,3 +141,15 @@ LOGOUT_REDIRECT_URL = 'login'
 # Campo por defecto para PK
 # ---------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# ---------------------------------------------------
+# Correo de form por GMAIL
+# ---------------------------------------------------
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'agrofastservice@gmail.com'
+EMAIL_HOST_PASSWORD = 'hmar nows nhdj zbrd'
+DEFAULT_FROM_EMAIL = 'agrofastservice@gmail.com'
