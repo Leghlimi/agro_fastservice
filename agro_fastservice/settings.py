@@ -4,6 +4,8 @@ Django settings for agro_fastservice project.
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+#load_dotenv()
 
 # ---------------------------------------------------
 # Ruta base del proyecto
@@ -13,18 +15,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------
 # Determinar entorno: desarrollo o producción
 # ---------------------------------------------------
+# En PythonAnywhere definir DJANGO_PRODUCTION=1 en consola o WSGI
+IS_PRODUCTION = os.environ.get('DJANGO_PRODUCTION') == '1'
 
 # ---------------------------------------------------
 # Cargar variables de entorno
 # ---------------------------------------------------
-
+ENV_FILE = Path(__file__).resolve().parent.parent / ('.env.production' if IS_PRODUCTION else '.env.development')
+load_dotenv(ENV_FILE)
 
 # ---------------------------------------------------
 # Seguridad y depuración
 # ---------------------------------------------------
-SECRET_KEY = 'django-insecure-cr@0xuy@t9@^7$l*&af+1r&@vv=v*#9i3yer$jl1yjo&u54p40'
-DEBUG = True
-ALLOWED_HOSTS = []
+SECRET_KEY = os.getenv('SECRET_KEY')
+DEBUG = os.getenv('DEBUG') == 'True'
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 
 # ---------------------------------------------------
@@ -91,6 +96,17 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv('DATABASE_ENGINE'),
+#         'NAME': os.getenv('DATABASE_NAME'),
+#         'USER': os.getenv('DATABASE_USER', ''),
+#         'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
+#         'HOST': os.getenv('DATABASE_HOST', ''),
+#         'PORT': os.getenv('DATABASE_PORT', ''),
+#     }
+# }
+
 
 # ---------------------------------------------------
 # Validación de contraseñas
@@ -128,6 +144,7 @@ USE_TZ = True
 # ---------------------------------------------------
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # ---------------------------------------------------
 # Configuración de usuarios

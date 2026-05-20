@@ -1,6 +1,25 @@
+# Archivos compilados
 __pycache__/
 *.pyc
+
+# Base de datos local
 db.sqlite3
+
+# Entorno virtual
 .venv/
+
+# Archivos de Pycharm y MacOS
 .idea/
 .DS_Store
+
+# Archivos de entorno
+.env
+.env.development
+.env.production
+
+# Archivos estáticos recolectados
+/staticfiles/
+
+# Claves o certificado
+*.key
+*.pem
