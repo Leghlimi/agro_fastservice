@@ -1,0 +1,1 @@
+web: gunicorn agro_fastservice.wsgi --log-file -
