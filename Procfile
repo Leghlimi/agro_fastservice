@@ -1,1 +1,1 @@
-web: gunicorn agro_fastservice.wsgi --log-file -
+web: gunicorn agro_fastservice.wsgi --log-file - --bind 0.0.0.0:$PORT
