@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ---------------------------------------------------
-# Determinar entorno: desarrollo o producción
+# Determinar entrno: desarrollo o producción
 # ---------------------------------------------------
 # En PythonAnywhere definir DJANGO_PRODUCTION=1 en consola o WSGI
 IS_PRODUCTION = os.environ.get('DJANGO_PRODUCTION') == '1'
@@ -142,7 +142,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ---------------------------------------------------
 # Internacionalización
 # ---------------------------------------------------
-LANGUAGE_CODE = 'en-es'
+LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
@@ -179,6 +179,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'agrofastservice@gmail.com'
-EMAIL_HOST_PASSWORD = 'hmar nows nhdj zbrd'
-DEFAULT_FROM_EMAIL = 'agrofastservice@gmail.com'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
