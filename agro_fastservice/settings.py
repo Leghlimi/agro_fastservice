@@ -5,7 +5,8 @@ Django settings for agro_fastservice project.
 from pathlib import Path
 import os
 from dotenv import load_dotenv
-#load_dotenv()
+
+# load_dotenv()
 
 # ---------------------------------------------------
 # Ruta base del proyecto
@@ -30,7 +31,6 @@ load_dotenv(ENV_FILE)
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
-
 
 # ---------------------------------------------------
 # Aplicaciones instaladas
@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 # ---------------------------------------------------
@@ -70,7 +71,7 @@ ROOT_URLCONF = 'agro_fastservice.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'], # Directorio de plantillas global.
+        'DIRS': [BASE_DIR / 'templates'],  # Directorio de plantillas global.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -84,7 +85,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'agro_fastservice.wsgi.application'
-
 
 # ---------------------------------------------------
 # Base de datos
@@ -138,7 +138,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # ---------------------------------------------------
 # Internacionalización
 # ---------------------------------------------------
@@ -150,13 +149,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # ---------------------------------------------------
 # Archivos estáticos
 # ---------------------------------------------------
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # ---------------------------------------------------
 # Configuración de usuarios
@@ -170,7 +169,6 @@ LOGOUT_REDIRECT_URL = 'login'
 # Campo por defecto para PK
 # ---------------------------------------------------
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 # ---------------------------------------------------
 # Correo de form por GMAIL
