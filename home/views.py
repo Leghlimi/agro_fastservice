@@ -4,10 +4,12 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ContactoForm
 
+
 # Vista de la página principal (index)
 def index(request):
     # render toma el request y el archivo HTML que queremos mostrar
     return render(request, 'home/index.html')
+
 
 # Vista de la página de contacto
 def contacto(request):
@@ -24,7 +26,7 @@ def contacto(request):
     if request.method == 'POST':
         form = ContactoForm(request.POST)
         if form.is_valid():
-            mensaje = form.save() # guarda en BD Y devuelve el objeto guardado
+            mensaje = form.save()  # guarda en BD Y devuelve el objeto guardado
             send_mail(
                 subject=f'Nueva consulta de {mensaje.nombre}',
                 message=f'Nombre: {mensaje.nombre}\nTeléfono: {mensaje.telefono}\nEmail: {mensaje.email}\nFecha: {mensaje.fecha}\nDirección: {mensaje.direccion_finca}\nM2 finca: {mensaje.m2_finca}\nKg estimados: {mensaje.kg_estimados}\nOtros datos: {mensaje.otros_datos}',
@@ -36,6 +38,7 @@ def contacto(request):
     else:
         form = ContactoForm()
     return render(request, 'home/contacto.html', {'form': form})
+
 
 def galeria(request):
     return render(request, 'home/galeria.html')
