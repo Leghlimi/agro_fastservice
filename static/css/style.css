@@ -72,14 +72,12 @@ header {
 .navbar-brand img {
     height: 40px;
     margin-right: 10px;
-    transform: scale(1.6);
-    transform-origin: left center;
 }
 
 @media (max-width: 992px) {
     .navbar {
-        padding-top: 2rem !important;
-        padding-bottom: 2rem !important;
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
     }
 }
 
@@ -202,22 +200,28 @@ footer h6 {
     box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.25);
 }
 
-/* Input cantidad carrito */
-#input-cantidad {
-    width: 170px !important;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 2px !important;
-    text-align: right;
-}
+ /* Input cantidad carrito — mobile-first */
+  #input-cantidad {
+      width: 100%;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-align: right;
+  }
 
-@media (max-width: 576px) {
-    .row-cols-1 > .col {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-}
+  @media (min-width: 576px) {
+      #input-cantidad {
+          width: 170px;
+          font-size: 1.1rem;
+          letter-spacing: 2px;
+      }
+  }
+
+  .row-cols-1 > .col {
+      flex: 0 0 100%;
+      max-width: 100%;
+      width: 100%;
+  }
 
 
 
@@ -239,94 +243,118 @@ footer h6 {
     background-color: rgba(var(--bs-body-color-rgb), 0.02);
 }
 
-/* =========================================================
-   VISTA CARRITO (ESCRITORIO)
-========================================================= */
-@media (min-width: 769px) {
-    .carrito-table-wrap .table {
-        border-radius: 0.75rem;
-        overflow: hidden;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-    }
+  /* =========================================================
+     VISTA CARRITO — mobile-first (base = móvil)
+  ========================================================= */
+  .table thead {
+      display: none;
+  }
 
-    .carrito-row {
-        border-top: 1px solid rgba(0, 0, 0, 0.04);
-    }
-}
+  .table tbody tr {
+      display: block;
+      margin-bottom: 0.75rem;
+      background: var(--bs-body-secondary-bg);
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
 
-/* =========================================================
-   VISTA CARRITO (MÓVIL / TABLET)
-========================================================= */
-@media (max-width: 768px) {
-    .table thead {
-        display: none;
-    }
+  .table tbody tr td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none !important;
+      font-size: 0.92rem;
+      padding: 0.35rem 0;
+  }
 
-    .table tbody tr {
-        display: block;
-        margin-bottom: 0.75rem;
-        background: var(--bs-body-secondary-bg);
-        border-radius: 0.75rem;
-        padding: 0.75rem 1rem;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    }
+  .table tbody tr td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: var(--bs-secondary-color);
+      margin-right: 0.75rem;
+      flex: 0 0 auto;
+  }
 
-    .table tbody tr td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: none !important;
-        font-size: 0.92rem;
-        padding: 0.35rem 0;
-    }
+  .carrito-thumb {
+      width: 50px !important;
+      height: 50px !important;
+      flex: 0 0 auto;
+      object-fit: cover;
+  }
 
-    .table tbody tr td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        color: var(--bs-secondary-color);
-        margin-right: 0.75rem;
-        flex: 0 0 auto;
-    }
+  .table tbody tr td .btn {
+      min-width: 38px;
+      padding: 0.35rem 0.55rem;
+  }
 
-    .carrito-thumb {
-        width: 50px !important;
-        height: 50px !important;
-        flex: 0 0 auto;
-    }
+    /* ESCRITORIO: recuperamos la tabla normal */
+  @media (min-width: 769px) {
+      .table thead {
+          display: table-header-group;
+      }
 
-    .table tbody tr td .btn {
-        min-width: 38px;
-        padding: 0.35rem 0.55rem;
-    }
-}
+      .table tbody tr {
+          display: table-row;
+          margin-bottom: 0;
+          background: transparent;
+          border-radius: 0;
+          padding: 0;
+          box-shadow: none;
+      }
+
+      .table tbody tr td {
+          display: table-cell;
+          font-size: 1rem;
+          padding: 0.75rem;
+      }
+
+      .table tbody tr td::before {
+          display: none;
+      }
+
+      .carrito-table-wrap .table {
+          border-radius: 0.75rem;
+          overflow: hidden;
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+      }
+
+      .carrito-row {
+          border-top: 1px solid rgba(0, 0, 0, 0.04);
+      }
+  }
+
 
 /* =========================================================
    TOASTS (NOTIFICACIONES FLOTANTES) – VISTOSOS
 ========================================================= */
 
 /* Tamaño, padding, tipografía y efecto vidrio */
-.toast {
-    opacity: 0.9;
-    /* más visible */
-    backdrop-filter: blur(6px);
-    /* desenfoque más marcado */
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    /* sombra más profunda */
-    border-radius: 1rem;
-    /* bordes más redondeados */
-    padding: 1rem 1.5rem;
-    /* más espacio interno */
-    font-size: 1.1rem;
-    /* texto más grande */
-    font-weight: 600;
-    /* más llamativo */
-    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    animation: slideUp 0.5s ease-out;
-    min-width: 300px;
-    /* ancho mínimo */
-    max-width: 400px;
-    /* ancho máximo */
-}
+  .toast {
+      opacity: 0.9;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      border-radius: 1rem;
+      padding: 0.75rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+      animation: slideUp 0.5s ease-out;
+      min-width: 0;
+      width: calc(100vw - 2rem);
+      max-width: 100%;
+  }
+
+  @media (min-width: 576px) {
+      .toast {
+          padding: 1rem 1.5rem;
+          font-size: 1.1rem;
+          width: auto;
+          min-width: 300px;
+          max-width: 400px;
+      }
+  }
+
 
 /* Hover: más opaco y ligeramente agrandado */
 .toast:hover {
@@ -404,12 +432,6 @@ footer h6 {
     transform: scale(1.05);
 }
 
-/* =========================================================
-   CONTACTO
-========================================================= */
-@media (max-width: 576px) {
-    .col-md-6 {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-    }
-}
+  /* =========================================================
+     CONTACTO — mobile-first - gestionado por Bootstrap (col-12 col-md-6)
+  ========================================================= */

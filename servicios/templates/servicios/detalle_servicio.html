@@ -4,7 +4,7 @@
 {% block title %}{{ servicio.nombre }}{% endblock %}
 
 {% block content %}
-    <div class="container py-5">
+    <div class="container pt-3 pt-md-5 pb-5">
         <div class="row g-5 align-items-start">
 
             <!-- Columna izquierda: Imagen del servicio -->
@@ -19,7 +19,7 @@
             <div class="col-12 col-md-8 text-start">
 
                 <!-- Nombre del servicio -->
-                <h1 class="display-5 fw-bold mb-3 text-body">{{ servicio.nombre }}</h1>
+                 <h1 class="fs-2 fs-md-display-5 fw-bold mb-3 text-body">{{ servicio.nombre }}</h1>
 
                 <!-- Precio destacado -->
                 <div class="mb-4">
@@ -35,11 +35,11 @@
                         <input type="number" id="input-cantidad" name="cantidad" min="10000"
                                class="form-control w-auto text-end" placeholder="kg">
                         <button type="submit"
-                                class="btn btn-success btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center">
+                                class="btn btn-success btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center w-100 w-sm-auto">
                             <i class="fas fa-shopping-cart me-2"></i>Añadir al carrito
                         </button>
                         <a href="{% url 'servicios:lista_servicios' %}"
-                           class="btn btn-secondary btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center mt-3 mt-sm-0">
+                           class="btn btn-secondary btn-md rounded-3 shadow-sm d-flex align-items-center justify-content-center w-100 w-sm-auto mt-3 mt-sm-0">
                             <i class="fas fa-arrow-left me-2"></i>Volver al catálogo
                         </a>
                     </div>

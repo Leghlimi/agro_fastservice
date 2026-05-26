@@ -4,67 +4,69 @@
 {% block title %}Resultados de búsqueda{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2 class="mb-4 text-body">Resultados para "{{ query }}"</h2>
+    <div class="container">
+        <h2 class="mb-4 text-body">Resultados para "{{ query }}"</h2>
 
-{#    Se usa el diccionario de contexto lista_servicios 3:56 #}
-    {% if lista_servicios %}
-    <div class="row">
-        {% for servicio in lista_servicios %}
-        <div class="col-md-4 mb-3">
-            <div class="card h-100 shadow-sm">
-                <a href="{% url 'servicios:detalle_servicio' servicio.id %}" class="text-decoration-none text-body">
-                    <img src="{% static 'img/portadas/'|add:servicio.imagen %}" class="card-img-top"
-                        alt="{{ servicio.nombre }}">
-                    <div class="card-body text-start">
-                        <h5 class="card-title">{{ servicio.nombre }}</h5>
-                        <p class="card-text">{{ servicio.categoria }}</p>
-                        <p class="card-text fw-bold">{{ servicio.precio }} €</p>
+        {#    Se usa el diccionario de contexto lista_servicios 3:56 #}
+        {% if lista_servicios %}
+            <div class="row">
+                {% for servicio in lista_servicios %}
+                    <div class="col-12 col-sm-6 col-md-4 mb-3">
+                        <div class="card h-100 shadow-sm">
+                            <a href="{% url 'servicios:detalle_servicio' servicio.id %}"
+                               class="text-decoration-none text-body">
+                                <img src="{% static 'img/portadas/'|add:servicio.imagen %}"
+                                     class="card-img-top object-fit-cover" style="height: 180px;"
+                                     alt="{{ servicio.nombre }}">
+                                <div class="card-body text-start">
+                                    <h5 class="card-title">{{ servicio.nombre }}</h5>
+                                    <p class="card-text">{{ servicio.categoria }}</p>
+                                    <p class="card-text fw-bold">{{ servicio.precio }} €</p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </a>
+                {% endfor %}
             </div>
-        </div>
-        {% endfor %}
+
+            <!-- Paginación tipo Bootstrap - Navegación -->
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center flex-wrap">
+                    {% if lista_servicios.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?q={{ query }}&page={{ lista_servicios.previous_page_number }}">Anterior</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Anterior</span>
+                        </li>
+                    {% endif %}
+
+                    {% for num in lista_servicios.paginator.page_range %}
+                        {% if lista_servicios.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?q={{ query }}&page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if lista_servicios.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?q={{ query }}&page={{ lista_servicios.next_page_number }}">Siguiente</a>
+                        </li>
+                    {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link">Siguiente</span>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% else %}
+            <p class="text-center mt-4 text-body">No se encontraron resultados.</p>
+        {% endif %}
     </div>
-
-    <!-- Paginación tipo Bootstrap - Navegación -->
-    <nav aria-label="Page navigation" class="mt-4">
-        <ul class="pagination justify-content-center">
-            {% if lista_servicios.has_previous %}
-            <li class="page-item">
-                <a class="page-link" href="?q={{ query }}&page={{ lista_servicios.previous_page_number }}">Anterior</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-                <span class="page-link">Anterior</span>
-            </li>
-            {% endif %}
-
-            {% for num in lista_servicios.paginator.page_range %}
-            {% if lista_servicios.number == num %}
-            <li class="page-item active">
-                <span class="page-link">{{ num }}</span>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="?q={{ query }}&page={{ num }}">{{ num }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-
-            {% if lista_servicios.has_next %}
-            <li class="page-item">
-                <a class="page-link" href="?q={{ query }}&page={{ lista_servicios.next_page_number }}">Siguiente</a>
-            </li>
-            {% else %}
-            <li class="page-item disabled">
-                <span class="page-link">Siguiente</span>
-            </li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% else %}
-    <p class="text-center mt-4 text-body">No se encontraron resultados.</p>
-    {% endif %}
-</div>
-{% endblock %}y
+{% endblock %}
