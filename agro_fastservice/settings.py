@@ -16,7 +16,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------------------------------
 # Determinar entrno: desarrollo o producción
 # ---------------------------------------------------
-# En PythonAnywhere definir DJANGO_PRODUCTION=1 en consola o WSGI
 IS_PRODUCTION = os.environ.get('DJANGO_PRODUCTION') == '1'
 
 # ---------------------------------------------------
@@ -31,6 +30,7 @@ load_dotenv(ENV_FILE)
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1').split(',')
 
 # ---------------------------------------------------
 # Aplicaciones instaladas
@@ -109,18 +109,6 @@ else:
         }
     }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': os.getenv('DATABASE_ENGINE'),
-#         'NAME': os.getenv('DATABASE_NAME'),
-#         'USER': os.getenv('DATABASE_USER', ''),
-#         'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
-#         'HOST': os.getenv('DATABASE_HOST', ''),
-#         'PORT': os.getenv('DATABASE_PORT', ''),
-#     }
-# }
-
-
 # ---------------------------------------------------
 # Validación de contraseñas
 # ---------------------------------------------------
@@ -144,7 +132,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # ---------------------------------------------------
 LANGUAGE_CODE = 'es-es'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Madrid'
 
 USE_I18N = True
 
@@ -181,3 +169,13 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
+
+# ---------------------------------------------------
+# Seguridad HTTPS (solo producción)
+# ---------------------------------------------------
+if IS_PRODUCTION:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
