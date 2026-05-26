@@ -32,7 +32,7 @@
                 </td>
                 <td data-label="Categoria" class="text-center">{{ item.servicio.categoria }}</td>
                 <td data-label="Precio" class="text-center">{{ item.servicio.precio }} €</td>
-                <td data-label="Kg estimados" class="text-center">{{ item.cantidad }} kg</td>
+                <td data-label="kg estimados" class="text-center">{{ item.cantidad }} kg</td>
                 <td data-label="Subtotal" class="text-center fw-semibold">{{ item.subtotal|floatformat:0 }} €</td>
                 <td data-label="Acciones" class="text-center">
                     <a href="{% url 'carrito:eliminar' item.servicio.id %}"
