@@ -27,7 +27,7 @@ load_dotenv(ENV_FILE)
 # ---------------------------------------------------
 # Seguridad y depuración
 # ---------------------------------------------------
-SECRET_KEY = os.getenv('SECRET_KEY', 'b0w__&30e4@sj@i_l(@5)67kokg*o!0t%&pfxd5awkx=&pm!84')
+SECRET_KEY = os.getenv('SECRET_KEY', 'clave-solo-para-build-no-usar-en-produccion')
 DEBUG = os.getenv('DEBUG') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1').split(',')
