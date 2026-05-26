@@ -2,6 +2,5 @@
   builder = "nixpacks"
 
   [deploy]
-  preDeployCommand = "/opt/venv/bin/python manage.py migrate contenttypes zero --fake && /opt/venv/bin/python manage.py migrate"
-  startCommand = "python manage.py collectstatic --noinput && gunicorn agro_fastservice.wsgi --log-file - --bind 0.0.0.0:$PORT"
+  startCommand = "python manage.py migrate && python manage.py collectstatic --noinput && gunicorn agro_fastservice.wsgi --log-file - --bind 0.0.0.0:$PORT"
   healthcheckPath = "/"
