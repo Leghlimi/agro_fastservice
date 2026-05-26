@@ -174,7 +174,7 @@ DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
 # Seguridad HTTPS (solo producción)
 # ---------------------------------------------------
 if IS_PRODUCTION:
-    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_HSTS_SECONDS = 31536000
