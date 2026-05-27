@@ -27,7 +27,7 @@ load_dotenv(ENV_FILE)
 # ---------------------------------------------------
 # Seguridad y depuración
 # ---------------------------------------------------
-SECRET_KEY = os.getenv('SECRET_KEY', 'clave-solo-para-build-no-usar-en-produccion')
+SECRET_KEY = os.getenv('SECRET_KEY', 'gma')
 DEBUG = os.getenv('DEBUG') == 'True'
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', 'http://127.0.0.1').split(',')
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'anymail',
     'servicios',
     'home',
     'buscador',
@@ -162,14 +163,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ---------------------------------------------------
 # Correo de form por GMAIL
 # ---------------------------------------------------
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 465
-EMAIL_USE_SSL = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = os.getenv('EMAIL_HOST_USER')
-EMAIL_TIMEOUT = 10  # segundos — evita que el worker de Gunicorn muera por timeout SMTP
+EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
+ANYMAIL = {
+    'RESEND_API_KEY': os.getenv('RESEND_API_KEY'),
+}
+# Mientras el dominio no esté verificado en Resend usar onboarding@resend.dev
+# Una vez verificado agrofastservice.es, cambiar a agrofastservice@agrofastservice.es
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'onboarding@resend.dev')
 
 # ---------------------------------------------------
 # Seguridad HTTPS (solo producción)

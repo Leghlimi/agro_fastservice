@@ -44,7 +44,7 @@ def contacto(request):
                         f'Kg estimados: {mensaje.kg_estimados}\n'
                         f'Otros datos: {mensaje.otros_datos}'
                     ),
-                    from_email=settings.EMAIL_HOST_USER,
+                    from_email=settings.DEFAULT_FROM_EMAIL,
                     recipient_list=['agrofastservice@gmail.com'],
                     fail_silently=False,
                 )
