@@ -24,7 +24,7 @@ body {
     background: linear-gradient(135deg, #1a3a1a 0%, #2d6a2d 40%, #4a9e4a 70%, #1a3a1a 100%);
     background-size: 200% 200%;
     animation: heroGradient 8s ease infinite;
-    border-radius: 0 0 0.5rem 0.5rem;
+    border-radius: 0.5rem 0.5rem;
 }
 
 @keyframes heroGradient {
@@ -57,6 +57,24 @@ body {
 .btn-shimmer:hover::after,
 .btn-shimmer:active::after {
     left: 150%;
+}
+
+/* =========================================================
+   BOTÓN CTA — PULSO
+========================================================= */
+.btn-pulse {
+    animation: pulseCta 2.2s ease-in-out infinite;
+}
+
+.btn-pulse:hover,
+.btn-pulse:active {
+    animation: none;
+}
+
+@keyframes pulseCta {
+    0%   { box-shadow: 0 0 0 0 rgba(74, 158, 74, 0.55); }
+    60%  { box-shadow: 0 0 0 12px rgba(74, 158, 74, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(74, 158, 74, 0); }
 }
 
 /* =========================================================
@@ -112,20 +130,25 @@ header {
 
 /* Logo de la navbar */
 .navbar-brand img {
-    height: 40px;
-    margin-right: 10px;
-}
-
-@media (max-width: 992px) {
-    .navbar {
-        padding-top: 0.75rem !important;
-        padding-bottom: 0.75rem !important;
-    }
+    height: 64px;
+    margin-right: 0;
 }
 
 .navbar-brand span {
-    font-size: 1.2rem;
-    text-shadow: 2px 2px 5px #000;
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .navbar-brand img {
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    .navbar-brand span {
+        display: inline;
+        font-size: 1.2rem;
+        text-shadow: 2px 2px 5px #000;
+    }
 }
 
 /* =========================================================
