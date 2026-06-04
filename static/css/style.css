@@ -86,7 +86,68 @@ header {
     left: 0;
     width: 100%;
     z-index: 1020;
-    /* encima de todo */
+    transition: box-shadow 0.3s ease;
+}
+
+/* =========================================================
+   NAVBAR SHRINK ON SCROLL
+========================================================= */
+header .navbar {
+    transition: padding 0.3s ease;
+}
+
+header.scrolled .navbar {
+    padding-top: 0.2rem !important;
+    padding-bottom: 0.2rem !important;
+}
+
+header.scrolled .navbar-brand img {
+    height: 48px;
+}
+
+@media (min-width: 992px) {
+    header.scrolled .navbar-brand img {
+        height: 28px;
+    }
+}
+
+/* =========================================================
+   ICONOS — BOUNCE AL HOVER
+========================================================= */
+.card:hover .fa-3x {
+    animation: iconBounce 0.5s ease;
+}
+
+@keyframes iconBounce {
+    0%   { transform: translateY(0); }
+    35%  { transform: translateY(-10px); }
+    60%  { transform: translateY(-4px); }
+    80%  { transform: translateY(-7px); }
+    100% { transform: translateY(0); }
+}
+
+/* =========================================================
+   RIPPLE EN BOTONES
+========================================================= */
+.btn-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple-wave {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(0);
+    animation: rippleAnim 0.55s linear;
+    pointer-events: none;
+}
+
+@keyframes rippleAnim {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
 }
 
 /* =========================================================

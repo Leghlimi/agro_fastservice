@@ -3,6 +3,33 @@
       AOS.init({ once: true, duration: 500, easing: 'ease-out', offset: 80 });
 
       // =========================================================
+      // NAVBAR SHRINK ON SCROLL
+      // =========================================================
+      const headerEl = document.querySelector('header');
+      if (headerEl) {
+          window.addEventListener('scroll', function () {
+              headerEl.classList.toggle('scrolled', window.scrollY > 50);
+          }, { passive: true });
+      }
+
+      // =========================================================
+      // RIPPLE EN BOTONES
+      // =========================================================
+      document.querySelectorAll('.btn-ripple').forEach(function (btn) {
+          btn.addEventListener('click', function (e) {
+              const rect = btn.getBoundingClientRect();
+              const size = Math.max(rect.width, rect.height);
+              const x = e.clientX - rect.left - size / 2;
+              const y = e.clientY - rect.top  - size / 2;
+              const wave = document.createElement('span');
+              wave.classList.add('ripple-wave');
+              wave.style.cssText = 'width:' + size + 'px;height:' + size + 'px;left:' + x + 'px;top:' + y + 'px;';
+              btn.appendChild(wave);
+              wave.addEventListener('animationend', function () { wave.remove(); });
+          });
+      });
+
+      // =========================================================
       // MODO OSCURO
       // =========================================================
       const btn = document.getElementById("toggle-theme");
