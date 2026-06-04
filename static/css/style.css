@@ -54,7 +54,8 @@ body {
     pointer-events: none;
 }
 
-.btn-shimmer:hover::after {
+.btn-shimmer:hover::after,
+.btn-shimmer:active::after {
     left: 150%;
 }
 

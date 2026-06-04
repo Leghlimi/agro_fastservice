@@ -1,5 +1,7 @@
   document.addEventListener("DOMContentLoaded", function () {
 
+      AOS.init({ once: true, duration: 500, easing: 'ease-out', offset: 80 });
+
       // =========================================================
       // MODO OSCURO
       // =========================================================
