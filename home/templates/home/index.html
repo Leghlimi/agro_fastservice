@@ -6,11 +6,9 @@
 {% block content %}
 
     <!-- Hero -->
-    <div class="py-5 mb-4"
-         style="background: linear-gradient(135deg, #1a3a1a 0%, #2d6a2d 60%, #4a9e4a 100%); border-radius: 0.5rem 0.5rem;">
+    <div class="py-5 mb-4 hero-animated">
         <div class="container text-center text-white py-4">
             <h1 class="display-5 display-md-4 fw-bold mb-3">Servicios agrícolas a golpe de clic</h1>
-            <p class="lead mb-4 text-white-50">Servicios agrícolas al alcance de todo agricultor</p>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
                 <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success btn-lg rounded-pill px-4">
                     <i class="fas fa-leaf me-2"></i>Ver servicios
@@ -44,7 +42,7 @@
                     </div>
                     <h5 class="fw-bold text-body">Maquinaria especializada</h5>
                     <p class="text-body-secondary">Ofrecemos servicios de extracción de sandías con torillo, maquinaria
-                        específica que no siempre está disponible en las empresas familiares.</p>
+                        específica que no siempre está al alcance</p>
                 </div>
             </div>
 
@@ -54,8 +52,8 @@
                         <i class="fas fa-calendar-check fa-3x" style="color: #2d6a2d;"></i>
                     </div>
                     <h5 class="fw-bold text-body">Agenda tu cita en un clic</h5>
-                    <p class="text-body-secondary">Añade los servicios que necesitas al carrito, rellena el
-                        formulario de contacto y agendamos tu cita en minutos.</p>
+                    <p class="text-body-secondary">Consulta los servicios que necesitas, rellena el
+                        formulario de contratación y agendamos tu cita en minutos</p>
                     <a href="{% url 'contacto' %}" class="btn btn-success rounded-pill mt-auto px-4">
                         Agendar cita
                     </a>
@@ -81,7 +79,7 @@
             <div class="row g-2 align-items-center">
                 <div class="col-12 col-md-7">
                     <h2 class="fw-bold text-body mb-3">Almería, capital agrícola</h2>
-                    <p class="text-body-secondary">En temporada, cada hora cuenta.</p>
+                    <p class="text-body-secondary">Servicios agrícolas al alcance de todo agricultor</p>
                     <p class="text-body-secondary">Agro FastService conecta al agricultor con la maquinaria y el
                         personal que necesita, cuando lo necesita.</p>
                     <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success rounded-pill px-4 mt-2">
