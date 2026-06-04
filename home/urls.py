@@ -5,4 +5,5 @@ urlpatterns = [
     path('', views.index, name='home'),  # 👈 ruta principal: llama a la vista index
     path('contacto/', views.contacto, name='contacto'),  # 👈 ruta contacto: llama a la vista contacto
     path('galeria/', views.galeria, name='galeria'),
+    path('consulta/', views.consulta, name='consulta'),
 ]

@@ -7,7 +7,7 @@
 
     <!-- Hero -->
     <div class="py-5 mb-4"
-         style="background: linear-gradient(135deg, #1a3a1a 0%, #2d6a2d 60%, #4a9e4a 100%); border-radius: 0 0 1rem 1rem;">
+         style="background: linear-gradient(135deg, #1a3a1a 0%, #2d6a2d 60%, #4a9e4a 100%); border-radius: 0.5rem 0.5rem;">
         <div class="container text-center text-white py-4">
             <h1 class="display-5 display-md-4 fw-bold mb-3">Servicios agrícolas a golpe de clic</h1>
             <p class="lead mb-4 text-white-50">Servicios agrícolas al alcance de todo agricultor</p>
@@ -16,10 +16,13 @@
                     <i class="fas fa-leaf me-2"></i>Ver servicios
                 </a>
                 <a href="{% url 'galeria' %}" class="btn btn-outline-light btn-lg rounded-pill px-4">
-                    <i class="fas fa-images me-2"></i>Ver maquinaria
+                    <i class="fas fa-tractor me-2"></i>Ver maquinaria
+                </a>
+                <a href="{% url 'consulta' %}" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                    <i class="fas fa-envelope me-2"></i>Contacto
                 </a>
                 <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg rounded-pill px-4">
-                    <i class="fas fa-envelope me-2"></i>Contáctanos
+                    <i class="fas fa-calendar-check me-2"></i>Contratar
                 </a>
             </div>
         </div>
@@ -46,6 +49,20 @@
             </div>
 
             <div class="col-12 col-md-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4 d-flex flex-column">
+                    <div class="mb-3">
+                        <i class="fas fa-calendar-check fa-3x" style="color: #2d6a2d;"></i>
+                    </div>
+                    <h5 class="fw-bold text-body">Agenda tu cita en un clic</h5>
+                    <p class="text-body-secondary">Añade los servicios que necesitas al carrito, rellena el
+                        formulario de contacto y agendamos tu cita en minutos.</p>
+                    <a href="{% url 'contacto' %}" class="btn btn-success rounded-pill mt-auto px-4">
+                        Agendar cita
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-4">
                 <div class="card h-100 border-0 shadow-sm text-center p-4">
                     <div class="mb-3">
                         <i class="fas fa-handshake fa-3x" style="color: #2d6a2d;"></i>
@@ -55,43 +72,25 @@
                         y sencilla, sin intermediarios innecesarios.</p>
                 </div>
             </div>
-
-            <div class="col-12 col-md-4">
-                <div class="card h-100 border-0 shadow-sm text-center p-4">
-                    <div class="mb-3">
-                        <i class="fas fa-calendar-check fa-3x" style="color: #2d6a2d;"></i>
-                    </div>
-                    <h5 class="fw-bold text-body">Agenda tu cita</h5>
-                    <p class="text-body-secondary">Añade los servicios que necesitas al carrito, rellena el formulario
-                        de contacto
-                        y agendamos tu cita en minutos.</p>
-                    <a href="{% url 'contacto' %}" class="btn btn-success rounded-pill mt-auto px-4">
-                        <i class="fas fa-envelope me-2"></i>Contactar
-                    </a>
-                </div>
-            </div>
         </div>
     </div>
 
     <!-- Servicios destacados -->
-    <div class="py-5" style="background-color: var(--bs-body-secondary-bg);">
+    <div class="py-3" style="background-color: var(--bs-body-secondary-bg);">
         <div class="container">
-            <div class="row g-4">
-                <div class="col-12">
+            <div class="row g-2 align-items-center">
+                <div class="col-12 col-md-7">
                     <h2 class="fw-bold text-body mb-3">Almería, capital agrícola</h2>
-                    <p class="text-body-secondary">Una provincia en constante expansión donde la agricultura es el motor
-                        económico. La falta de mano de obra especializada ha impulsado la externalización de servicios
-                        agrícolas.</p>
-                    <p class="text-body-secondary">Agro FastService nace de una necesidad real, observada de primera
-                        mano en el sector, para facilitar el acceso a servicios profesionales de maquinaria
-                        agrícola.</p>
+                    <p class="text-body-secondary">En temporada, cada hora cuenta.</p>
+                    <p class="text-body-secondary">Agro FastService conecta al agricultor con la maquinaria y el
+                        personal que necesita, cuando lo necesita.</p>
                     <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success rounded-pill px-4 mt-2">
                         <i class="fas fa-arrow-right me-2"></i>Explorar servicios
                     </a>
                 </div>
-                <div class="col-12 text-center mt-3">
-                    <img src="{% static 'img/logo_afs_transparent.png' %}" alt="Agro FastService" class="img-fluid"
-                         style="max-height: 350px;">
+                <div class="col-12 col-md-5 text-center">
+                    <img src="{% static 'img/logo_afs_transparent.webp' %}" alt="Agro FastService" class="img-fluid"
+                         style="max-height: 250px;">
                 </div>
             </div>
         </div>

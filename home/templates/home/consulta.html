@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Consulta rápida{% endblock %}
+
+{% block content %}
+<div class="container py-5" style="max-width: 600px;">
+    <h2 class="fw-bold mb-1 text-body">¿Tienes alguna consulta?</h2>
+    <p class="text-body-secondary mb-4">Rellena el formulario y te contactamos lo antes posible.</p>
+
+    {% if enviado %}
+        <div class="alert alert-success rounded-3">
+            <i class="fas fa-check-circle me-2"></i>Consulta enviada correctamente. Te contactaremos pronto.
+        </div>
+    {% endif %}
+
+    <form method="post" class="bg-body p-4 rounded-3 shadow-sm">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            {{ form.nombre }}
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Teléfono</label>
+            {{ form.telefono }}
+        </div>
+        <div class="mb-4">
+            <label class="form-label">Mensaje</label>
+            {{ form.mensaje }}
+        </div>
+        <button type="submit" class="btn btn-primary rounded-3 px-4">
+            <i class="fas fa-paper-plane me-2"></i>Enviar consulta
+        </button>
+    </form>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
-from .forms import ContactoForm
+from .forms import ContactoForm, ConsultaForm
 
 logger = logging.getLogger(__name__)
 
@@ -61,3 +61,45 @@ def contacto(request):
 
 def galeria(request):
     return render(request, 'home/galeria.html')
+
+
+def consulta(request):
+    enviado = False
+    if request.method == 'POST':
+        form = ConsultaForm(request.POST)
+        if form.is_valid():
+            mensaje = form.save()
+            try:
+                send_mail(
+                    subject=f'Nueva consulta rápida de {mensaje.nombre}',
+                    message=(
+                        f'Nombre: {mensaje.nombre}\n'
+                        f'Teléfono: {mensaje.telefono}\n'
+                        f'Mensaje: {mensaje.mensaje}'
+                    ),
+                    from_email=settings.DEFAULT_FROM_EMAIL,
+                    recipient_list=['agrofastservice@gmail.com'],
+                    fail_silently=False,
+                )
+            except Exception as e:
+                logger.error("Error al enviar el correo de consulta: %s", e)
+            enviado = True
+            messages.success(request, "Consulta enviada correctamente. Te contactaremos pronto.")
+            form = ConsultaForm()
+    else:
+        form = ConsultaForm()
+    return render(request, 'home/consulta.html', {'form': form, 'enviado': enviado})
+
+
+# Sin envio de email
+# def consulta(request):
+#     enviado = False
+#     if request.method == 'POST':
+#         form = ConsultaForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             enviado = True
+#             form = ConsultaForm()
+#     else:
+#         form = ConsultaForm()
+#     return render(request, 'home/consulta.html', {'form': form, 'enviado': enviado})

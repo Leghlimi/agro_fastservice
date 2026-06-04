@@ -23,3 +23,6 @@ db.sqlite3
 # Claves o certificado
 *.key
 *.pem
+
+.claude
+.junie

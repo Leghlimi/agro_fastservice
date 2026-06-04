@@ -6,7 +6,7 @@
       "nombre": "Torillo",
       "precio": "0.010",
       "categoria": "Sacar sandías con torillo",
-      "imagen": "servicio_torillo.png"
+      "imagen": "servicio_torillo.webp"
     }
   },
   {
@@ -16,7 +16,7 @@
       "nombre": "Personal",
       "precio": "0.019",
       "categoria": "Cuadra para sacar sandías",
-      "imagen": "servicio_personal.png"
+      "imagen": "servicio_personal.webp"
     }
   },
   {
@@ -26,7 +26,7 @@
       "nombre": "Torillo + Personal",
       "precio": "0.026",
       "categoria": "Servicio completo para sacar sandías",
-      "imagen": "servicio_completo.png"
+      "imagen": "servicio_completo.webp"
     }
   },
   {
@@ -36,7 +36,7 @@
       "nombre": "Servicio personalizado",
       "precio": "0.000",
       "categoria": "Consúltenos",
-      "imagen": "default.png"
+      "imagen": "default.webp"
     }
   },
   {
@@ -46,7 +46,7 @@
       "nombre": "Limpieza de invernadero",
       "precio": "0.000",
       "categoria": "Maquinaria y personal para limpieza de invernaderos",
-      "imagen": "default.png"
+      "imagen": "default.webp"
     }
   }
 ]

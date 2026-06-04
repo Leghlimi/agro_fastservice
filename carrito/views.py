@@ -24,7 +24,8 @@ def agregar_al_carrito(request, servicio_id):
     Esto es para que no se creen dos items distintos del mismo servicio, sino que se incremente la cantidad.
     '''
     servicio = get_object_or_404(Servicio, id=servicio_id)
-    cantidad = int(request.POST.get('cantidad', 1))
+    cantidad_raw = request.POST.get('cantidad', '').strip()
+    cantidad = int(cantidad_raw) if cantidad_raw else 1
     carrito, _ = Carrito.objects.get_or_create(usuario=request.user)
 
     item, creado = ItemCarrito.objects.get_or_create(carrito=carrito, servicio=servicio)

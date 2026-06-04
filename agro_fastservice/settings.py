@@ -161,15 +161,19 @@ LOGOUT_REDIRECT_URL = 'login'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # ---------------------------------------------------
-# Correo de form por GMAIL
+# Correo de form
 # ---------------------------------------------------
-EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
-ANYMAIL = {
-    'RESEND_API_KEY': os.getenv('RESEND_API_KEY'),
-}
-# Mientras el dominio no esté verificado en Resend usar onboarding@resend.dev
-# Una vez verificado agrofastservice.es, cambiar a agrofastservice@agrofastservice.es
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'onboarding@resend.dev')
+if IS_PRODUCTION:
+    # Producción: Resend via API (Railway bloquea SMTP)
+    EMAIL_BACKEND = 'anymail.backends.resend.EmailBackend'
+    ANYMAIL = {
+        'RESEND_API_KEY': os.getenv('RESEND_API_KEY'),
+    }
+    DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'onboarding@resend.dev')
+else:
+    # Desarrollo: los emails se imprimen en la terminal, no se envían
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'dev@agrofastservice.local'
 
 # ---------------------------------------------------
 # Seguridad HTTPS (solo producción)

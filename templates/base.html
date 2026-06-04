@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Agro FastService{% endblock %}</title>
+    <title>{% block title %}AGRO FASTSERVICE{% endblock %}</title>
 
     <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +24,7 @@
 
             <!-- Logo -->
             <a class="navbar-brand d-flex align-items-center order-1 order-lg-1 me-2" href="{% url 'home' %}">
-                <img src="{% static 'img/logo_afs_transparent.png' %}" alt="AFS Logo" class="me-2">
+                <img src="{% static 'img/logo_afs_transparent.webp' %}" alt="AFS Logo" class="me-2">
                 <span style="font-family: 'Arial', serif; font-size: 1rem; letter-spacing: 3px; color: #c8f5c8;">AGRO FASTSERVICE</span>
             </a>
 
@@ -45,13 +45,6 @@
 
                 <!-- Menú principal -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {% comment %}
-                         Listado de navegación
-                         Una condicional (if en la etiqueta <a/>) para que Inicio (o cual sea) esté activo solo si estoy en esa ruta
-                         Si la ruta solicitada por el ususario por el request.path es igual == a '/' (la raíz),
-                         entonces que deje el contenido entre el if y el endif, que es un active (esa class active
-                         Luego tenemos la ruta hacia la pag home o donde sea
-                         {% endcomment %}
                     <li class="nav-item">
                         <a class="nav-link nav-link-afs {% if request.path == '/' %}active{% endif %}"
                            href="{% url 'home' %}">
@@ -63,6 +56,17 @@
                            href="{% url 'servicios:lista_servicios' %}">
                             <i class="fas fa-leaf me-1"></i>Servicios
                         </a>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-afs {% if '/consulta/' in request.path %}active{% endif %}"
+                           href="{% url 'consulta' %}">
+                            <i class="fas fa-envelope me-1"></i>Contacto
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-afs {% if '/contacto/' in request.path %}active{% endif %}"
+                           href="{% url 'contacto' %}">
+                            <i class="fas fa-calendar-check me-1"></i>Contratar
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link nav-link-afs" href="https://www.diariodealmeria.es/tag/agricultura-almeria/"
@@ -70,26 +74,18 @@
                             <i class="fas fa-newspaper me-1"></i>Noticias
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-afs {% if '/contacto/' in request.path %}active{% endif %}"
-                           href="{% url 'contacto' %}">
-                            <i class="fas fa-envelope me-1"></i>Contacto
-                        </a>
-                    </li>
                 </ul>
 
                 <!-- Buscador -->
-                <form class="d-flex mb-2 mb-lg-0 me-lg-3 order-5 order-lg-4" role="search"
+                <form class="d-flex align-items-center mb-2 mb-lg-0 me-lg-3 order-5 order-lg-4" role="search"
                       action="{% url 'buscar_servicios' %}" method="get">
-                    <div class="input-group">
-                        <input class="form-control form-control-sm border-0 bg-transparent text-white"
-                               type="search" name="q" placeholder="Buscar..." aria-label="Buscar"
-                               value="{{ request.GET.q|default:'' }}"
-                               style="max-width: 150px;">
-                        <button class="btn btn-outline-light btn-sm" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
+                    <input id="search-input" class="form-control form-control-sm border-0 bg-transparent text-white d-none"
+                           type="search" name="q" placeholder="Buscar..." aria-label="Buscar"
+                           value="{{ request.GET.q|default:'' }}"
+                           style="max-width: 150px;">
+                    <button type="button" class="btn btn-outline-light btn-sm rounded-circle" id="search-toggle">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </form>
 
                 <!-- Carrito -->
@@ -201,12 +197,14 @@
                 <h6 class="text-uppercase">Enlaces útiles</h6>
                 <ul class="list-unstyled">
                     <li><a href="{% url 'home' %}" class="text-white-50 text-decoration-none">Inicio</a></li>
+
+                    <li><a href="{% url 'consulta' %}" class="text-white-50 text-decoration-none">Trabaja con
+                        nosotros</a></li>
+                    <li><a href="{% url 'consulta' %}" class="text-white-50 text-decoration-none">Contacto</a></li>
                     <li><a href="https://www.diariodealmeria.es/tag/agricultura-almeria/" target="_blank"
                            rel="noopener noreferrer"
-                           class="text-white-50 text-decoration-none">Noticias</a></li>
-                    <li><a href="{% url 'contacto' %}" class="text-white-50 text-decoration-none">Trabaja con
-                        nosotros</a></li>
-                    <li><a href="{% url 'contacto' %}" class="text-white-50 text-decoration-none">Contacto</a></li>
+                           class="text-white-50 text-decoration-none">Noticias</a>
+                    </li>
                 </ul>
             </div>
             <div class="col-md-4 mb-3">
@@ -218,7 +216,7 @@
         </div>
         <hr class="bg-secondary my-2">
         <div class="text-center small text-white-50">
-            <small>© {% now "Y" %} Agro FastService. Todos los derechos reservados.</small>
+            <small>© {% now "Y" %} AGRO FASTSERVICE. Todos los derechos reservados.</small>
         </div>
     </div>
 </footer>
@@ -226,5 +224,14 @@
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'js/script.js' %}"></script>
+<script>
+    document.getElementById('search-toggle').addEventListener('click', function () {
+        const input = document.getElementById('search-input');
+        input.classList.toggle('d-none');
+        if (!input.classList.contains('d-none')) {
+            input.focus();
+        }
+    });
+</script>
 </body>
 </html>
