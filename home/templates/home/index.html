@@ -10,16 +10,20 @@
         <div class="container text-center text-white py-4">
             <h1 class="display-5 display-md-4 fw-bold mb-3">Servicios agrícolas a golpe de clic</h1>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success btn-lg rounded-pill px-4 btn-shimmer btn-pulse btn-ripple">
+                <a href="{% url 'servicios:lista_servicios' %}"
+                   class="btn btn-success btn-lg rounded-pill px-4 btn-shimmer btn-pulse btn-ripple">
                     <i class="fas fa-leaf me-2"></i>Ver servicios
                 </a>
-                <a href="{% url 'galeria' %}" class="btn btn-outline-light btn-lg rounded-pill px-4 btn-shimmer btn-ripple">
+                <a href="{% url 'galeria' %}"
+                   class="btn btn-outline-light btn-lg rounded-pill px-4 btn-shimmer btn-ripple">
                     <i class="fas fa-tractor me-2"></i>Ver maquinaria
                 </a>
-                <a href="{% url 'consulta' %}" class="btn btn-outline-light btn-lg rounded-pill px-4 btn-shimmer btn-ripple">
+                <a href="{% url 'consulta' %}"
+                   class="btn btn-outline-light btn-lg rounded-pill px-4 btn-shimmer btn-ripple">
                     <i class="fas fa-envelope me-2"></i>Contacto
                 </a>
-                <a href="{% url 'contacto' %}" class="btn btn-outline-light btn-lg rounded-pill px-4 btn-shimmer btn-ripple">
+                <a href="{% url 'contacto' %}"
+                   class="btn btn-outline-light btn-lg rounded-pill px-4 btn-shimmer btn-ripple">
                     <i class="fas fa-calendar-check me-2"></i>Contratar
                 </a>
             </div>
@@ -54,7 +58,8 @@
                     <h5 class="fw-bold text-body">Agenda tu cita en un clic</h5>
                     <p class="text-body-secondary">Consulta los servicios que necesitas, rellena el
                         formulario de contratación y agendamos tu cita en minutos</p>
-                    <a href="{% url 'contacto' %}" class="btn btn-success rounded-pill mt-auto px-4 btn-shimmer btn-ripple">
+                    <a href="{% url 'contacto' %}"
+                       class="btn btn-success rounded-pill mt-auto px-4 btn-shimmer btn-ripple">
                         Agendar cita
                     </a>
                 </div>
@@ -83,15 +88,31 @@
                     </p>
                     <p class="text-body-secondary">Agro FastService conecta al agricultor con la maquinaria y el
                         personal que necesita, cuando lo necesita.</p>
-                    <a href="{% url 'servicios:lista_servicios' %}" class="btn btn-success rounded-pill px-4 mt-2 btn-shimmer btn-ripple">
-                        <i class="fas fa-arrow-right me-2"></i>Explorar servicios
+                    <a href="{% url 'consulta' %}"
+                       class="btn btn-success rounded-pill px-4 mt-2 btn-shimmer btn-ripple">
+                        <i class="fas fa-hand-point-right"></i> Consúltanos
                     </a>
                 </div>
                 <div class="col-12 col-md-5 text-center" data-aos="fade-up" data-aos-delay="100">
-                    <img src="{% static 'img/logo_afs_transparent.webp' %}" alt="Agro FastService" class="img-fluid"
-                         style="max-height: 250px;">
+                    <div id="carouselCampos" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3500">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{% static 'img/campo1-bg.png' %}" class="d-block mx-auto" alt="Campo 1"
+                                     style="max-height: 150px; object-fit: contain;">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'img/campo2-bg.png' %}" class="d-block mx-auto" alt="Campo 2"
+                                     style="max-height: 150px; object-fit: contain;">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="{% static 'img/campo3-bg.png' %}" class="d-block mx-auto" alt="Campo 3"
+                                     style="max-height: 150px; object-fit: contain;">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
 
