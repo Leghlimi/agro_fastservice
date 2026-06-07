@@ -39,6 +39,7 @@ def contacto(request):
                         f'Teléfono: {mensaje.telefono}\n'
                         f'Email: {mensaje.email}\n'
                         f'Fecha: {mensaje.fecha}\n'
+                        f'Servicio: {mensaje.get_servicio_display()}\n'
                         f'Dirección: {mensaje.direccion_finca}\n'
                         f'M2 finca: {mensaje.m2_finca}\n'
                         f'Kg estimados: {mensaje.kg_estimados}\n'

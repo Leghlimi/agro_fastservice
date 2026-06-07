@@ -1,5 +1,10 @@
 from django.db import models
 
+SERVICIO_CHOICES = [
+    ('torillo', 'Torillo'),
+    ('colla' , 'Colla'),
+    ('torillo_colla', 'Torillo + Colla'),
+]
 
 class MensajeContacto(models.Model):
     """
@@ -24,6 +29,12 @@ class MensajeContacto(models.Model):
     m2_finca = models.PositiveIntegerField(blank=True, null=True)
     kg_estimados = models.PositiveIntegerField(blank=True, null=True)
     otros_datos = models.TextField(blank=True, default='')
+    servicio = models.CharField(
+        max_length=20,
+        choices=SERVICIO_CHOICES,
+        blank=True,
+        default='',
+    )
     enviado_en = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
