@@ -6,9 +6,9 @@
 {% block content %}
 
     <!-- Hero -->
-    <div class="py-5 mb-4 hero-animated">
-        <div class="container text-center text-white py-4">
-            <h1 class="display-5 display-md-4 fw-bold mb-3">Servicios agrícolas a golpe de clic</h1>
+    <div class="py-5 mb-4 hero-animated position-relative overflow-hidden" id="particles-hero">
+        <div class="container text-center text-white py-4 position-relative" style="z-index:1;">
+            <h1 class="display-5 display-md-4 fw-bold mb-3" id="hero-title"></h1>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
                 <a href="{% url 'servicios:lista_servicios' %}"
                    class="btn btn-success btn-lg rounded-pill px-4 btn-shimmer btn-pulse btn-ripple">
@@ -148,4 +148,39 @@
       </div>
   </div>
 
+<!-- tsParticles + efectos hero -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+<script>
+    // Typewriter
+    (function () {
+        const el = document.getElementById('hero-title');
+        const text = 'Servicios agrícolas a golpe de clic';
+        let i = 0;
+        function type() {
+            if (i < text.length) {
+                el.textContent += text.charAt(i++);
+                setTimeout(type, 55);
+            }
+        }
+        type();
+    })();
+
+    // Partículas — menos en móvil
+    const isMobile = window.innerWidth < 768;
+    tsParticles.load("particles-hero", {
+        fpsLimit: 60,
+        particles: {
+            number: { value: isMobile ? 18 : 50 },
+            color: { value: ["#c8f5c8", "#ffffff", "#4a9e4a"] },
+            shape: { type: "circle" },
+            opacity: { value: { min: 0.2, max: 0.5 } },
+            size: { value: { min: 1, max: 3 } },
+            move: { enable: true, speed: isMobile ? 0.8 : 1.5, outModes: "out" }
+        },
+        interactivity: {
+            events: { onHover: { enable: !isMobile, mode: "repulse" } }
+        },
+        background: { color: "transparent" }
+    });
+</script>
 {% endblock %}
